@@ -8,6 +8,24 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.16" />
+    <PackageReference Include="AspNetCore.Identity.Mongo" Version="8.3.3" />
+    <PackageReference Include="AspNetCore.Identity.MongoDbCore" Version="3.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.17" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Views\Account\" />
+    <None Remove="Settings\" />
+    <None Remove="Views\Operations\" />
+    <None Remove="Views\Secured\" />
+    <None Remove="AspNetCore.Identity.Mongo" />
+    <None Remove="AspNetCore.Identity.MongoDbCore" />
+    <None Remove="Microsoft.AspNetCore.Identity.UI" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Account\" />
+    <Folder Include="Settings\" />
+    <Folder Include="Views\Operations\" />
+    <Folder Include="Views\Secured\" />
+  </ItemGroup>
 </Project>

@@ -8,6 +8,11 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PropertyInspection_WebApp.Settings;
+using PropertyInspection_WebApp.Models;
+using Microsoft.AspNetCore.Http;
+
+
 
 namespace PropertyInspection_WebApp
 {
@@ -23,7 +28,18 @@ namespace PropertyInspection_WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var mongoDbSettings = Configuration.GetSection(nameof(MongoDBConfig)).Get<MongoDBConfig>();
+            services.AddIdentity<ApplicationUser, ApplicationRole>()
+                       .AddMongoDbStores<ApplicationUser, ApplicationRole, Guid>
+                       (
+                           mongoDbSettings.ConnectionString, mongoDbSettings.Name
+                       );
+
             services.AddControllersWithViews();
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.AccessDeniedPath = new PathString("/Secured/AccessDeniedIndex");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +59,8 @@ namespace PropertyInspection_WebApp
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseAuthorization();
 
