@@ -13,6 +13,11 @@ a.navbar-brand {
     justify-content: right;
 }
 
+.btnImage {
+    height: 1em;
+    width: 1em;
+}
+
 /* Provide sufficient contrast against white background */
 a {
     color: #0366d6;

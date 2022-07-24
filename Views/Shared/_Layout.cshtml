@@ -26,20 +26,31 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav flex-grow-1 loginBtn">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Operations" asp-action="Create">Create User</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Secured" asp-action="">Login</a>
-                        </li>
                         @{
                             if (User?.Identity?.IsAuthenticated ?? false)
                             {
                                 <li class="nav-item">
-                                    <u>Welcome: @User.Identity.Name</u>
+                                    <a asp-controller="Secured" asp-action="" class="btn btn-light">Dashboard</a>
+                                </li>
+                            }
+                        }
+                        @{
+                            if (!User?.Identity?.IsAuthenticated ?? false)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Secured" asp-action="">Login</a>
+                                </li>
+                            }
+                        }
+                        @{
+                            if (User?.Identity?.IsAuthenticated ?? false)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link disabled" href="#">@User.Identity.Name</a>
+                                </li>
+                                <li class="nav-item">
                                     <a asp-controller="Account" asp-action="Logout" class="btn btn-danger">Logout</a>
                                 </li>
-
                             }
                         }
                     </ul>

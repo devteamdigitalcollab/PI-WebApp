@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -47,7 +48,6 @@ namespace PropertyInspection_WebApp.Controllers
                 }
                 ModelState.AddModelError(nameof(email), "Login Failed: Invalid Email or Password");
             }
-
             return View();
         }
 

@@ -5,8 +5,8 @@
     <div class="row">
         <div class="col-3">
             <ul class="list-group">
-                <li class="list-group-item active" aria-current="true">Account Management</li>
-                <li class="list-group-item"><a asp-area="" asp-controller="Dashboard" asp-action="Inspection" class="card-link">Inspections</a></li>
+                <li class="list-group-item" aria-current="true"><a asp-area="" asp-controller="Secured" asp-action="Index">Account Management</a></li>
+                <li class="list-group-item active">Inspections</li>
                 <li class="list-group-item">A third item</li>
                 <li class="list-group-item">A fourth item</li>
                 <li class="list-group-item">And a fifth one</li>
@@ -16,23 +16,23 @@
             <div class="input-group mb-3">
                 <div class="card" style="width: 13rem;">
                     <div class="card-body">
-                        <h5 class="card-title">Create User</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Create User, System, Admin</h6>
+                        <h5 class="card-title">Create Inspection</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Create new Inspection</h6>
                         <a asp-area="" asp-controller="Operations" asp-action="Create" class="card-link">Create User</a>
                     </div>
                 </div>
                 <div class="card" style="width: 13rem;">
                     <div class="card-body">
-                        <h5 class="card-title">Create Role</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Create a new Application Role</h6>
+                        <h5 class="card-title">View Inspections</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">View all Inspections</h6>
                         <a asp-area="" asp-controller="Operations" asp-action="CreateRole" class="card-link">Create Role</a>
                     </div>
                 </div>
                 <div class="card" style="width: 13rem;">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                        <a href="#" class="card-link">Card link</a>
+                        <h5 class="card-title">Submited Inspections</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Approve/Reject Inspections</h6>
+                        <a href="#" class="card-link">link</a>
                     </div>
                 </div>
             </div>
