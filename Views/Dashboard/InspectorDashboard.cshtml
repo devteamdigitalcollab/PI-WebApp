@@ -1,0 +1,110 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var user = await UserManager.GetUserAsync(User);
+}
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <div class="card">
+                <div class="imgDiv"><img class="card-img-top btnImage" src="~/Assets/user-100.png" alt="Card image cap"></div>
+                <div class="card-body">
+                    <h5 class="card-title">@User.Identity.Name</h5>
+                    <p class="card-text">
+                        Name: @User.Identity.Name <br />
+                        Email: @user.Email
+                        Type: Inspector
+
+                    </p>
+                </div>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item active">Inspections</li>
+                <li class="list-group-item">Reports</li>
+                @*<li class="list-group-item">A fourth item</li>
+                    <li class="list-group-item">And a fifth one</li>*@
+            </ul>
+        </div>
+        <div class="col-9">
+            <div class="input-group mb-3">
+                <div class="card" style="width: 15rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Create Inspection</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Create new Inspection</h6>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inspectionTypeModal">
+                            Create
+                        </button>
+                    </div>
+                </div>
+                <div class="card" style="width: 15rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">View Inspections</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">View all Inspections</h6>
+                        <button type="button" class="btn btn-primary" asp-area="" asp-controller="Operations" asp-action="CreateRole">
+                            View
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="inspectionTypeModal" tabindex="-1" role="dialog" aria-labelledby="inspectionTypeModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered inspectionTypeModal" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="inspectionTypeModalLongTitle">Inspection Type</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body inspectionTypeModalBody">
+                <div class="card" style="width: 22rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Pre-Purchase Inspection</h5>
+                        <p class="card-text">
+                            This inspection type is used when a property needs to be inspected prior to a customer's purchase.
+                        </p>
+                        <input type="button" class="btn btn-primary" value="Create" onclick="location.href='@Url.Action("PP_Inspection", "InspectionType")'" />
+                    </div>
+                </div>
+                <div class="card" style="width: 22rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Maintenance Report</h5>
+                        <p class="card-text">
+                            This inspection type is used when a property needs to be inspected for a maintenance report.
+                        </p>
+                        <input type="button" class="btn btn-primary" value="Create" onclick="location.href='@Url.Action("PP_Inspection", "InspectionType")'" />
+                    </div>
+                </div>
+                <div class="card" style="width: 22rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Meth Report</h5>
+                        <p class="card-text">
+                            This inspection type is used when a property needs to be inspected any type of Meth Preparation.
+                        </p>
+                        <input type="button" class="btn btn-primary" value="Create" onclick="location.href='@Url.Action("PP_Inspection", "InspectionType")'" />
+                    </div>
+                </div>
+                <div class="card" style="width: 22rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Healthy Home</h5>
+                        <p class="card-text">
+                            This inspection type is used when a property needs to be inspected Healthy Homes.
+                        </p>
+                        <input type="button" class="btn btn-primary" value="Create" onclick="location.href='@Url.Action("PP_Inspection", "InspectionType")'" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
