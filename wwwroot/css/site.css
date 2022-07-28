@@ -9,15 +9,27 @@ a.navbar-brand {
     word-break: break-all;
 }
 
+.inspectionTypeModal {
+    max-width: 95% !important;
+}
+
+.inspectionTypeModalBody {
+    display: inline-flex;
+}
+
 .loginBtn {
     justify-content: right;
 }
 
 .btnImage {
-    height: 1em;
-    width: 1em;
+    margin-top: 2em;
+    height: 5em;
+    width: 5em;
 }
 
+.imgDiv {
+    text-align: center;
+}
 /* Provide sufficient contrast against white background */
 a {
     color: #0366d6;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace PropertyInspection_WebApp.Models
@@ -14,6 +15,9 @@ namespace PropertyInspection_WebApp.Models
 
         [Required]
         public string Password { get; set; }
+
+        [Required]
+        public int RoleID { get; set; }
     }
 }
 

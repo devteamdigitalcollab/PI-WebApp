@@ -1,0 +1,77 @@
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+<script src="~/lib/jquery/jquery.min.js"></script>
+<script type="text/javascript">var _propertyInfo = [];
+    $(document).ready(function () {
+        LoadPropertyInfos();
+    });
+
+
+    function LoadPropertyInfos() {
+        Reset();
+        $.get("../PropertyInfo/GetPropertyInfo", function (propertyInfos) {
+            _propertyInfo = propertyInfos;
+            $.map(propertyInfos, function (propertyInfo) {
+                var tempStr = "<tr>";
+                tempStr += "<td>" + propertyInfo.PropertyId + "</td>";
+                tempStr += "<td>" + propertyInfo.ClientFName + "</td>";
+                tempStr += "<td>" + propertyInfo.ClientLName + "</td>";
+                tempStr += "<td>" + propertyInfo.PropertyAddress + "</td>";
+                tempStr += "<td>" + propertyInfo.InspectionType + "</td>";
+                tempStr += "<td>" + propertyInfo.InspectionDate + "</td>";
+                tempStr += "<td>" + propertyInfo.InspectionTime + "</td>";
+                tempStr += "<td>" + propertyInfo.WhenAdded + "</td>";
+                tempStr += "<td>" + propertyInfo.AddedBy + "</td>";
+                tempStr += "<td><button class='btn btn - primary' onclick='Edit(\"" + propertyInfo.PropertyId + "\")'>Edit</button><button class='btn btn - primary' onclick='Delete(\"" + propertyInfo.PropertyId + "\")'>Delete</button></td>";
+                tempStr += "</tr>";
+                $("#tblPropertyInfo tbody").append(tempStr);
+            })
+        })
+    }
+
+    function Reset() {
+        _propertyInfo = [];
+        $("#tblPropertyInfo tbody tr").remove();
+        $(".form-control").val("");
+    }
+
+    function Save() {
+        var currentUserEmail = document.getElementsByName('CurrentUserEmail')[0].content;
+        var now = new Date().toLocaleString();
+        var propertyInfo = {
+            PropertyId: $.trim($("#PropertyId").val()),
+            ClientFName: $.trim($("#ClientFName").val()),
+            ClientLName: $.trim($("#ClientLName").val()),
+            PropertyAddress: $.trim($("#PropertyAddress").val()),
+            InspectionType: $.trim($("#InspectionType").val()),
+            InspectionDate: $.trim($("#InspectionDate").val()),
+            InspectionTime: $.trim($("#InspectionTime").val()),
+            WhenAdded: currentUserEmail,
+            AddedBy: now
+        };
+
+        $.post("../PropertyInfo/SavePropertyInfo", propertyInfo);
+        setTimeout(LoadUsers, 3000);
+
+    }
+    function Edit(PropertyId) {
+        var propertyInfo = _propertyInfo.find(x => x.PropertyId == PropertyId);
+        $("#PropertyId").val(propertyInfo.PropertyId);
+        $("#ClientFName").val(propertyInfo.ClientFName);
+        $("#ClientLName").val(propertyInfo.ClientLName);
+        $("#PropertyAddress").val(propertyInfo.PropertyAddress);
+        $("#InspectionType").val(propertyInfo.InspectionType);
+        $("#InspectionDate").val(propertyInfo.InspectionDate);
+        $("#InspectionTime").val(propertyInfo.InspectionTime);
+    }
+    function Delete(PropertyId) {
+        $.ajax({
+            url: "../PropertyInfo/DeletePropertyInfo?PropertyId=" + PropertyId,
+            method: 'DELETE'
+        })
+            .done(function (data) {
+                alert(data);
+                LoadPropertyInfos();
+            });
+
+    }</script>

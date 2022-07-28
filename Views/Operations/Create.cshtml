@@ -5,7 +5,7 @@
 
 @if (ViewBag.Message != null)
 {
-    <div class="p-1 mb-2 bg-success text-white">@ViewBag.Message</div>
+    <div class="p-1 mb-2  text-green">@ViewBag.Message</div>
 }
 <form method="post">
     <div class="form-group">
@@ -19,6 +19,14 @@
     <div class="form-group">
         <label asp-for="Password"></label>
         <input asp-for="Password" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="RoleID"></label>
+        <select asp-for="RoleID" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+            <option selected>Select User Role</option>
+            <option value=1>Admin</option>
+            <option value=2>Inspector</option>
+        </select>
     </div>
     <button type="submit" class="btn btn-primary">Create</button>
 </form>

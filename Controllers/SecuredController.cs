@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace PropertyInspection_WebApp.Controllers
 {
-    [Authorize(Roles = "Admin, System")]
+    [Authorize(Roles = "Admin, Inspector")]
     public class SecuredController : Controller
     {
         public IActionResult Index()
@@ -13,8 +13,8 @@ namespace PropertyInspection_WebApp.Controllers
             {
                 return RedirectToAction("AdminDashboard");
             }
-
-            return RedirectToAction("AccessDeniedIndex");
+            else
+                return RedirectToAction("InspectorDashboard");
         }
 
         [HttpGet]
@@ -27,7 +27,12 @@ namespace PropertyInspection_WebApp.Controllers
 
         public IActionResult AdminDashboard()
         {
-            return View();
+            return View("~/Views/Dashboard/AdminDashboard.cshtml");
+        }
+
+        public IActionResult InspectorDashboard()
+        {
+            return View("~/Views/Dashboard/InspectorDashboard.cshtml");
         }
     }
 }

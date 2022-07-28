@@ -11,8 +11,9 @@ using Microsoft.Extensions.Hosting;
 using PropertyInspection_WebApp.Settings;
 using PropertyInspection_WebApp.Models;
 using Microsoft.AspNetCore.Http;
-
-
+using PropertyInspection_WebApp.IRepository;
+using PropertyInspection_WebApp.Repository;
+using Microsoft.Extensions.Options;
 
 namespace PropertyInspection_WebApp
 {
@@ -34,7 +35,8 @@ namespace PropertyInspection_WebApp
                        (
                            mongoDbSettings.ConnectionString, mongoDbSettings.Name
                        );
-
+            services.AddSingleton(sp => sp.GetRequiredService<IOptions<MongoDBConfig>>().Value);
+            services.AddScoped<IPropertyInfoRepository, PropertyInfoRepository>();
             services.AddControllersWithViews();
             services.ConfigureApplicationCookie(options =>
             {
@@ -60,8 +62,6 @@ namespace PropertyInspection_WebApp
 
             app.UseRouting();
             app.UseAuthentication();
-            app.UseAuthorization();
-
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Immutable;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,6 +13,7 @@ namespace PropertyInspection_WebApp.Controllers
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly RoleManager<ApplicationRole> roleManager;
+
 
         public OperationsController(UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager)
         {
@@ -31,10 +34,17 @@ namespace PropertyInspection_WebApp.Controllers
                     Email = user.Email,
                     SecurityStamp = Guid.NewGuid().ToString()
                 };
-
+                var RoleIDForUser = user.RoleID;
                 IdentityResult result = await userManager.CreateAsync(appUser, user.Password);
                 //Adding User to Admin Role
-                await userManager.AddToRoleAsync(appUser, "Admin");
+                if (RoleIDForUser == 1)
+                {
+                    await userManager.AddToRoleAsync(appUser, "Admin");
+                }
+                else
+                {
+                    await userManager.AddToRoleAsync(appUser, "Inspector");
+                }
 
                 if (result.Succeeded)
                     ViewBag.Message = "User Created Successfully";
@@ -44,6 +54,7 @@ namespace PropertyInspection_WebApp.Controllers
                         ModelState.AddModelError("", error.Description);
                 }
             }
+            ModelState.Clear();
             return View(user);
         }
 

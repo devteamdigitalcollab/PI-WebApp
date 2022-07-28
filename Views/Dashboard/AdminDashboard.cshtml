@@ -1,38 +1,46 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var user = await UserManager.GetUserAsync(User);
 }
 <div class="container">
     <div class="row">
         <div class="col-3">
+            <div class="card">
+                <div class="imgDiv"><img class="card-img-top btnImage" src="~/Assets/user-100.png" alt="Card image cap"></div>
+                <div class="card-body">
+                    <h5 class="card-title">@User.Identity.Name</h5>
+                    <p class="card-text">
+                        Name: @User.Identity.Name <br />
+                        Email: @user.Email
+                    </p>
+                </div>
+            </div>
             <ul class="list-group">
                 <li class="list-group-item active" aria-current="true">Account Management</li>
-                <li class="list-group-item"><a asp-area="" asp-controller="Dashboard" asp-action="Inspection" class="card-link">Inspections</a></li>
-                <li class="list-group-item">A third item</li>
-                <li class="list-group-item">A fourth item</li>
-                <li class="list-group-item">And a fifth one</li>
+                <li class="list-group-item"><a asp-area="" asp-controller="Secured" asp-action="InspectorDashboard" class="card-link">Inspections</a></li>
+                <li class="list-group-item">Reports</li>
+                @*<li class="list-group-item">A fourth item</li>
+                    <li class="list-group-item">And a fifth one</li>*@
             </ul>
         </div>
         <div class="col-9">
             <div class="input-group mb-3">
-                <div class="card" style="width: 13rem;">
+                <div class="card" style="width: 15rem;">
                     <div class="card-body">
                         <h5 class="card-title">Create User</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Create User, System, Admin</h6>
                         <a asp-area="" asp-controller="Operations" asp-action="Create" class="card-link">Create User</a>
                     </div>
                 </div>
-                <div class="card" style="width: 13rem;">
+                <div class="card" style="width: 15rem;">
                     <div class="card-body">
                         <h5 class="card-title">Create Role</h5>
                         <h6 class="card-subtitle mb-2 text-muted">Create a new Application Role</h6>
                         <a asp-area="" asp-controller="Operations" asp-action="CreateRole" class="card-link">Create Role</a>
-                    </div>
-                </div>
-                <div class="card" style="width: 13rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                        <a href="#" class="card-link">Card link</a>
                     </div>
                 </div>
             </div>
