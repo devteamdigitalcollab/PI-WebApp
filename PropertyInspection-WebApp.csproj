@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>PropertyInspection_WebApp</RootNamespace>
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
   </PropertyGroup>
@@ -20,7 +20,7 @@
     <None Remove="Settings\" />
     <None Remove="Views\Operations\" />
     <None Remove="Views\Secured\" />
-    <None Remove="AspNetCore.Identity.Mongo" />
+    <None Remove="AspNetCore.Identity.Mongo" />ß
     <None Remove="AspNetCore.Identity.MongoDbCore" />
     <None Remove="Microsoft.AspNetCore.Identity.UI" />
     <None Remove="Views\Dashboard\" />
