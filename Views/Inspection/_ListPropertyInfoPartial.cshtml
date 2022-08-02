@@ -1,0 +1,75 @@
+@page
+@model PropertyInspection_WebApp.Views._ListPropertyInfoPartialModel
+
+
+
+<table class="table-sm table-responsive-sm table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyInfoList[0].PropertyId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyInfoList[0].ClientFName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyInfoList[0].ClientLName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyInfoList[0].InspectionType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyInfoList[0].InspectionDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyInfoList[0].InspectionTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyInfoList[0].WhenAdded)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyInfoList[0].AddedBy)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PropertyInfoList)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClientFName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClientLName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InspectionType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InspectionDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InspectionTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WhenAdded)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AddedBy)
+                </td>
+                <td>
+                    <a asp-page="./EditBook" asp-route-id="@item.PropertyId">Edit</a> |
+                    <a asp-page="./DetailBook" asp-route-id="@item.PropertyId">Details</a> |
+                    <a asp-page="./DeleteBook" asp-route-id="@item.PropertyId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
