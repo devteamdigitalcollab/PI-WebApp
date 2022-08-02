@@ -26,15 +26,12 @@ namespace PropertyInspection_WebApp.Models
         [BsonElement("InspectionType")]
         public string InspectionType { get; set; }
 
-        [BsonElement("InspectionDate")]
-        [BindProperty, DataType(DataType.Date)]
-        public DateTime InspectionDate { get; set; }
-
-        [BsonElement("InspectionTime")]
-        [BindProperty, DataType(DataType.Time)]
-        public DateTime InspectionTime { get; set; }
+        [BsonElement("InspectionDateTime")]
+        [BindProperty, DisplayFormat(DataFormatString = "{0:yyyy-MM-ddTHH:mm}", ApplyFormatInEditMode = true)]
+        public DateTime InspectionDateTime { get; set; }
 
         [BsonElement("WhenAdded")]
+        [BindProperty, DisplayFormat(DataFormatString = "{0:yyyy-MM-ddTHH:mm}", ApplyFormatInEditMode = true)]
         public DateTime WhenAdded { get; set; }
 
         [BsonElement("AddedBy")]

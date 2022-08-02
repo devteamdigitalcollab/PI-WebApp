@@ -1,0 +1,96 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var user = await UserManager.GetUserAsync(User);
+}
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <div class="card">
+                <div class="imgDiv"><img class="card-img-top btnImage" src="~/Assets/smart-home.png" alt="Card image cap"></div>
+                <div class="card-body">
+                    <h5 class="card-title">@User.Identity.Name</h5>
+                    <p class="card-text">
+                        Property Address: <br />
+                        Client Name:
+                        Inspection Type:
+
+                    </p>
+                </div>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item active">Entrance</li>
+                <li class="list-group-item">Living Room</li>
+                <li class="list-group-item">Dining Room</li>
+                <li class="list-group-item">Kitchen</li>
+                <li class="list-group-item">Bedroom</li>
+                <li class="list-group-item">Laundry</li>
+                <li class="list-group-item">General Comment</li>
+            </ul>
+        </div>
+        <div class="col-9">
+            <div class="text-center">
+                <h1 class="display-4">Inspection Checklist</h1>
+                <p>The general information required for all properties.</p>
+            </div>
+            <!-- Circles which indicates the steps of the form: -->
+            <div style="text-align:center;margin-top:40px; font-size:large; font-weight:200;">
+                <span class="step"></span>
+                Foundation &nbsp;
+                <span class="step"></span>
+                Wall Framing &nbsp;
+                <span class="step"></span>
+                Roof Space &nbsp;
+                <span class="step"></span>
+                Building Interior &nbsp;
+                <span class="step"></span>
+                Roof Exterior &nbsp;
+                <span class="step"></span>
+                Exterior Cladding &nbsp;
+                <span class="step"></span>
+            </div>
+
+            <form id="regForm" action="">
+
+                <!-- One "tab" for each step in the form: -->
+                <div class="tab">
+                    Foundation:
+                    <p><input placeholder="First name..." oninput="this.className = ''"></p>
+                    <p><input placeholder="Last name..." oninput="this.className = ''"></p>
+                    <p>
+                        <input type="file" accept="image/*;capture=camera" capture="camera" class="hidden" />
+                    </p>
+                </div>
+
+                <div class="tab">
+                    Wall Framing:
+                    <p><input placeholder="E-mail..." oninput="this.className = ''"></p>
+                    <p><input placeholder="Phone..." oninput="this.className = ''"></p>
+                </div>
+
+                <div class="tab">
+                    Roof Space:
+                    <p><input placeholder="dd" oninput="this.className = ''"></p>
+                    <p><input placeholder="mm" oninput="this.className = ''"></p>
+                    <p><input placeholder="yyyy" oninput="this.className = ''"></p>
+                </div>
+
+                <div class="tab">
+                    Login Info:
+                    <p><input placeholder="Username..." oninput="this.className = ''"></p>
+                    <p><input placeholder="Password..." oninput="this.className = ''"></p>
+                </div>
+
+                <div style="overflow:auto;">
+                    <div style="float:right;">
+                        <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                        <button type="button" id="nextBtn" onclick="nextPrev(1)">Save & Next</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

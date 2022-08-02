@@ -30,6 +30,7 @@
     <None Remove="Views\Inspection\" />
     <None Remove="IRepository\" />
     <None Remove="Repository\" />
+    <None Remove="Views\ModularForms\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Account\" />
@@ -41,5 +42,6 @@
     <Folder Include="Views\Inspection\" />
     <Folder Include="IRepository\" />
     <Folder Include="Repository\" />
+    <Folder Include="Views\ModularForms\" />
   </ItemGroup>
 </Project>
