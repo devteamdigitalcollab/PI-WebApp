@@ -1,17 +1,32 @@
 ﻿@{
     ViewData["Title"] = "Login";
 }
-<h1 class="">Login</h1>
-<div class="text-danger" asp-validation-summary="All"></div>
 
-<form method="post">
-    <div class="form-group">
-        <label>Email</label>
-        <input name="email" class="form-control" />
+<div class="container">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 text-center">
+            <img class="card-img-top btnImage" src="~/Assets/inspection.png" alt="Card image cap">
+            <h1 class="text-center display-6" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Property Inspection App</h1>
+            <h3 class="text-center display-7" style="font-family:'Poppins'">Login</h3>
+            <div class="text-danger" asp-validation-summary="All"></div>
+            <form class="w-50" method="post" style="display: inline-block;">
+                <div class="form-group">
+                    <input placeholder="Email" name="email" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input placeholder="Password" name="password" class="form-control" />
+                </div>
+                <button class="btn btn-primary" type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z" />
+                        <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                    </svg>
+                    Log In
+                </button>
+            </form>
+        </div>
+        <div class="col-3"></div>
     </div>
-    <div class="form-group">
-        <label>Password</label>
-        <input name="password" class="form-control" />
-    </div>
-    <button class="btn btn-primary" type="submit">Log In</button>
-</form>
+</div>
+

@@ -13,6 +13,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.7" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.7" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
+    <PackageReference Include="bootstrap.sass" Version="5.1.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +32,12 @@
     <None Remove="IRepository\" />
     <None Remove="Repository\" />
     <None Remove="Views\ModularForms\" />
+    <None Remove="Views\ModularForms\BuildingElementsSub\" />
+    <None Remove="Views\ModularForms\ExteriorElementsSub\" />
+    <None Remove="Views\ModularForms\ExteriorSiteElementsSub\" />
+    <None Remove="Views\ModularForms\GeneralElementsSub\" />
+    <None Remove="Views\ModularForms\InteriorElementsSub\" />
+    <None Remove="bootstrap.sass" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Account\" />
@@ -43,5 +50,10 @@
     <Folder Include="IRepository\" />
     <Folder Include="Repository\" />
     <Folder Include="Views\ModularForms\" />
+    <Folder Include="Views\ModularForms\BuildingElementsSub\" />
+    <Folder Include="Views\ModularForms\ExteriorElementsSub\" />
+    <Folder Include="Views\ModularForms\ExteriorSiteElementsSub\" />
+    <Folder Include="Views\ModularForms\GeneralElementsSub\" />
+    <Folder Include="Views\ModularForms\InteriorElementsSub\" />
   </ItemGroup>
 </Project>

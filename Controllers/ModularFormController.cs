@@ -18,11 +18,34 @@ namespace PropertyInspection_WebApp.Controllers
             _propertyInfo = propertyInfo;
         }
 
+        public IActionResult BuildingElements()
+        {
+            return View("~/Views/ModularForms/BuildingElementsSub/Foundation.cshtml");
+        }
 
+        public IActionResult InteriorElements()
+        {
+            return View("~/Views/ModularForms/InteriorElementsSub/InteriorElements.cshtml");
+        }
+
+        public IActionResult ExteriorElements()
+        {
+            return View("~/Views/ModularForms/ExteriorElementsSub/ExteriorElements.cshtml");
+        }
+
+        public IActionResult GeneralElements()
+        {
+            return View("~/Views/ModularForms/GeneralElementsSub/GeneralElements.cshtml");
+        }
+
+        public IActionResult ExteriorSiteElements()
+        {
+            return View("~/Views/ModularForms/ExteriorSiteElementsSub/ExteriorSiteElements.cshtml");
+        }
 
         public IActionResult Index()
         {
-            return View();
+            return View("~/Views/ModularForms/ModularLandingPage.cshtml");
         }
     }
 }

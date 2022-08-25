@@ -47,9 +47,17 @@
                 <input asp-for="WhenAdded" id="WhenAdded" value="@now" class="form-control" />
                 <input asp-for="AddedBy" id="AddedBy" value="@user.Email" class="form-control" hidden />
             </div>
-            <button type="submit" value="submit" class="btn btn-primary">Next</button>
+            <button id="add" type="submit" value="submit" class="btn btn-primary">Add</button>
 
+            @if (ViewBag.Message != null)
+            {
+                <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+                </script>
 
+            }
             @*Html.RenderPartial("_ListPropertyInfoPartial.cshtml");*@
 
 

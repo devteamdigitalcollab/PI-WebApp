@@ -3,6 +3,20 @@
 
 // Write your JavaScript code.
 
+
+// Js for alerting window - for backpage data loss control
+function backpageAlert() {
+    if (confirm("Returning to the dashboard, may result in loss of data. Do you still want to proceed?")) {
+        //do nothing and allow page to redirect to Index
+    } else {
+        var $link = ('#backlink');
+        $link.attr('asp-controller', value = null);
+        $link.attr('asp-action', value = null);
+    }
+}
+
+
+//-----------------Modular Form JavaScript - Begin -----------------------
 var currentTab = 0; // Current tab is set to be the first tab (0)
 showTab(currentTab); // Display the current tab
 
@@ -10,6 +24,7 @@ function showTab(n) {
     // This function will display the specified tab of the form ...
     var x = document.getElementsByClassName("tab");
     x[n].style.display = "block";
+
     // ... and fix the Previous/Next buttons:
     if (n == 0) {
         document.getElementById("prevBtn").style.display = "none";
@@ -17,9 +32,15 @@ function showTab(n) {
         document.getElementById("prevBtn").style.display = "inline";
     }
     if (n == (x.length - 1)) {
+        var btn = document.getElementById("nextBtn");
+        btn.classList.add('btn');
+        btn.classList.add('btn-success');
         document.getElementById("nextBtn").innerHTML = "Submit";
     } else {
-        document.getElementById("nextBtn").innerHTML = "Next";
+        var btn = document.getElementById("nextBtn");
+        btn.classList.add('btn');
+        btn.classList.add('btn-primary');
+        document.getElementById("nextBtn").innerHTML = "Save & Next";
     }
     // ... and run a function that displays the correct step indicator:
     fixStepIndicator(n)
@@ -54,9 +75,9 @@ function validateForm() {
         // If a field is empty...
         if (y[i].value == "") {
             // add an "invalid" class to the field:
-            y[i].className += " invalid";
+            y[i].className += " valid";
             // and set the current valid status to false:
-            valid = false;
+            valid = true;
         }
     }
     // If the valid status is true, mark the step as finished and valid:
@@ -75,3 +96,14 @@ function fixStepIndicator(n) {
     //... and adds the "active" class to the current step:
     x[n].className += " active";
 }
+
+//-----------------Modular Form JavaScript - End -----------------------
+
+
+
+$(document).ready(function () {
+    $("#add").on("click", function () {
+        alert('Property has been added.');
+    });
+
+});
