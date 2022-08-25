@@ -1,0 +1,91 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var user = await UserManager.GetUserAsync(User);
+}
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+            <div class="card">
+                <div class="imgDiv"><img class="card-img-top btnImage" src="~/Assets/smart-home.png" alt="Card image cap"></div>
+                <div class="card-body">
+                    <h5 class="card-title">@User.Identity.Name</h5>
+                    <p class="card-text">
+                        Property Address: <br />
+                        Client Name:
+                        Inspection Type:
+                    </p>
+                </div>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item"><a asp-area="" asp-controller="ModularForm" asp-action="BuildingElements" class="card-link">Building Elements</a></li>
+                <li class="list-group-item"><a asp-area="" asp-controller="ModularForm" asp-action="InteriorElements" class="card-link">Interior Elements</a></li>
+                <li class="list-group-item"><a asp-area="" asp-controller="ModularForm" asp-action="ExteriorElements" class="card-link">Exterior Elements</a></li>
+                <li class="list-group-item"><a asp-area="" asp-controller="ModularForm" asp-action="GeneralElements" class="card-link">General Elements</a></li>
+                <li class="list-group-item"><a asp-area="" asp-controller="ModularForm" asp-action="ExteriorSiteElements" class="card-link">Exterior Site Elements</a></li>
+            </ul>
+        </div>
+        <div class="col-9">
+            <div class="text-center">
+                <h1 class="display-6" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Pre-Purchase Checklist </h1>
+                <h3 class="display-7" style="font-family:'Poppins'">Dashboard</h3>
+            </div>
+            <br />
+            <div class="input-group text-center mb-3">
+                <div class="card" style="width: 15rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Building Elements</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Foundation, Wall Framing, Roof Space</h6>
+                        <br />
+                        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("BuildingElements", "ModularForm")'">
+                            Complete
+                        </button>
+                    </div>
+                </div>
+                <div class="card" style="width: 15rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Interior Elements</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Lounge, Kitchen, Bathrooms, Bedrooms</h6>
+                        <br />
+                        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("InteriorElements", "ModularForm")'">
+                            Complete
+                        </button>
+                    </div>
+                </div>
+                <div class="card" style="width: 15rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Exterior Elements</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Roof Exterior, Cladding, Joinery</h6>
+                        <br />
+                        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("ExteriorElements", "ModularForm")'">
+                            Complete
+                        </button>
+                    </div>
+                </div>
+                <div class="card" style="width: 15rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">General Elements</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Electrical, Plumbing & Drainage</h6>
+                        <br />
+                        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("GeneralElements", "ModularForm")'">
+                            Complete
+                        </button>
+                    </div>
+                </div>
+                <div class="card" style="width: 15rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Exterior Site Elements</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Exterior Site Elements</h6>
+                        <br />
+                        <button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("ExteriorSiteElements", "ModularForm")'">
+                            Complete
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

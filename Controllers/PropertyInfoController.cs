@@ -1,4 +1,6 @@
+using System.Threading;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using PropertyInspection_WebApp.IRepository;
 using PropertyInspection_WebApp.Models;
 using PropertyInspection_WebApp.Repository;
@@ -26,8 +28,8 @@ namespace PropertyInspection_WebApp.Controllers
 
             if (p != null)
                 ViewBag.Message = "Property Information added Successfully";
+            return View("~/Views/ModularForms/ModularLandingPage.cshtml");
 
-            return RedirectToAction("Index");
         }
 
         public JsonResult DeletePropertyInfo(string propertyId)
@@ -39,7 +41,9 @@ namespace PropertyInspection_WebApp.Controllers
 
         public IActionResult Index()
         {
-            return View("~/Views/Inspection/PropertyInfo.cshtml");
+
+            return View("~/Views/ModularForms/ModularLandingPage.cshtml");
+            //return View("~/Views/Inspection/PropertyInfo.cshtml");
         }
     }
 }
