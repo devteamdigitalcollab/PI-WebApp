@@ -20,7 +20,8 @@ for details on configuring this project to bundle and minify static web assets. 
 .vrline {
     position: relative;
     top: 10%;
-    max-width: 50%;
+    max-width: 20%;
+    margin: 1em;
 }
 
 a.navbar-brand {
