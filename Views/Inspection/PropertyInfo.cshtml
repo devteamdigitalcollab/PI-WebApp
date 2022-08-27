@@ -1,4 +1,4 @@
-﻿@model PropertyInfo
+@model PropertyInfo
 @using Microsoft.AspNetCore.Identity
 @inject UserManager<ApplicationUser> UserManager
 
@@ -13,11 +13,6 @@
     <h1 class="display-4">Property Information</h1>
     <p>The general information required for all properties.</p>
 </div>
-
-@if (ViewBag.Message != null)
-{
-    <div class="p-1 mb-2 text-green">@ViewBag.Message</div>
-}
 
 <container style="display:flex">
     <row class="col-3"></row>
@@ -42,20 +37,26 @@
                 <label asp-for="PropertyAddress">Property Address</label>
                 <input id="PropertyAddress" asp-for="PropertyAddress" class="form-control" />
             </div>
-
             <div class="form-group">
-                <label asp-for="InspectionDate">Inspection Date</label>
-                <input id="InspectionDate" asp-for="InspectionDate" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label asp-for="InspectionTime">Inspection Time</label>
-                <input id="InspectionTime" asp-for="InspectionTime" class="form-control" />
+                <label asp-for="InspectionDateTime">Inspection Date/Time</label>
+                <input asp-format="{0:yyyy-MM-ddTHH:mm}" id="InspectionDateTime" asp-for="InspectionDateTime" class="form-control" />
             </div>
             <div class="form-group ">
-                <input id="WhenAdded" asp-for="WhenAdded" value="@now" class="form-control" hidden />
-                <input id="AddedBy" asp-for="AddedBy" value="@user.Email" class="form-control" hidden />
+                <input asp-for="WhenAdded" id="WhenAdded" value="@now" class="form-control" />
+                <input asp-for="AddedBy" id="AddedBy" value="@user.Email" class="form-control" hidden />
             </div>
-            <button type="submit" value="submit" class="btn btn-primary">Next</button>
+            <button id="add" type="submit" value="submit" class="btn btn-primary">Add</button>
+
+            @if (ViewBag.Message != null)
+            {
+                <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+                </script>
+
+            }
+            @*Html.RenderPartial("_ListPropertyInfoPartial.cshtml");*@
 
         }
     </row>
@@ -76,9 +77,6 @@
             <tbody>
             </tbody>
         </table>*@
-
     <row class="col-3"></row>
-
-    @*<partial name="_ListPropertyInfoPartial.cshtml" />*@
 </container>
 

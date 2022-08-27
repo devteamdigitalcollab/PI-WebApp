@@ -1,4 +1,3 @@
-@page
 @model PropertyInspection_WebApp.Views._ListPropertyInfoPartialModel
 
 
@@ -19,10 +18,7 @@
                 @Html.DisplayNameFor(model => model.PropertyInfoList[0].InspectionType)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PropertyInfoList[0].InspectionDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PropertyInfoList[0].InspectionTime)
+                @Html.DisplayNameFor(model => model.PropertyInfoList[0].InspectionDateTime)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.PropertyInfoList[0].WhenAdded)
@@ -49,10 +45,7 @@
                     @Html.DisplayFor(modelItem => item.InspectionType)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.InspectionDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.InspectionTime)
+                    @Html.DisplayFor(modelItem => item.InspectionDateTime)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.WhenAdded)

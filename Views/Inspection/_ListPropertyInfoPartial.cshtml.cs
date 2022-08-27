@@ -16,14 +16,11 @@ namespace PropertyInspection_WebApp.Views
         {
             _propertyInfoRepository = PropInfoRepo;
         }
-
-        [BindProperty]
-
         public List<PropertyInfo> PropertyInfoList { get; set; }
 
         public void OnGet()
         {
-            PropertyInfoList = _propertyInfoRepository.Gets().ToList();
+            PropertyInfoList = _propertyInfoRepository.Gets();
         }
     }
 }
