@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using AspNetCore.Identity.MongoDbCore.Infrastructure;
+using Microsoft.AspNetCore.Identity;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using PropertyInspection_WebApp.IRepository;
 using PropertyInspection_WebApp.Models;
 using PropertyInspection_WebApp.Settings;
+using PropertyInspection_WebApp.Helpers.TrasnactionHelper;
 
 namespace PropertyInspection_WebApp.Repository
 {
@@ -40,14 +43,21 @@ namespace PropertyInspection_WebApp.Repository
             return _propertyInfoTable.Find(FilterDefinition<PropertyInfo>.Empty).ToList();
         }
 
-        public PropertyInfo Save(PropertyInfo propertyinfo)
+        public bool Save(PropertyInfo propertyinfo)
         {
-            var propertyInfoObj = _propertyInfoTable.Find(x => x.PropertyId == propertyinfo.PropertyId).FirstOrDefault();
-            if (propertyInfoObj == null)
-                _propertyInfoTable.InsertOne(propertyinfo);
-            else
-                _propertyInfoTable.ReplaceOne(x => x.PropertyId == propertyinfo.PropertyId, propertyinfo);
-            return propertyinfo;
+            try
+            {
+                var result = _propertyInfoTable.Find(x => x.PropertyId == propertyinfo.PropertyId).FirstOrDefault();
+                if (result == null)
+                    _propertyInfoTable.InsertOne(propertyinfo);
+                else
+                    _propertyInfoTable.ReplaceOne(x => x.PropertyId == propertyinfo.PropertyId, propertyinfo);
+                return TransactionResultHelper.True;
+            }
+            catch (Exception)
+            {
+                return TransactionResultHelper.False;
+            }
         }
     }
 }

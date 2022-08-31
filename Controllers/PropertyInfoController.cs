@@ -4,6 +4,9 @@ using MongoDB.Bson;
 using PropertyInspection_WebApp.IRepository;
 using PropertyInspection_WebApp.Models;
 using PropertyInspection_WebApp.Repository;
+using PropertyInspection_WebApp.Helpers.TrasnactionHelper;
+using PropertyInspection_WebApp.Helpers.WaitHelper;
+using System;
 
 namespace PropertyInspection_WebApp.Controllers
 {
@@ -24,10 +27,15 @@ namespace PropertyInspection_WebApp.Controllers
 
         public IActionResult SavePropertyInfo(PropertyInfo propertyInfo)
         {
-            var p = _propertyInfoRepo.Save(propertyInfo);
+            var result = _propertyInfoRepo.Save(propertyInfo);
 
-            if (p != null)
+            if (result == TransactionResultHelper.True)
                 ViewBag.Message = "Property Information added Successfully";
+
+            ModelState.Clear();
+
+            WaitForViewBagReloadHelper.ExecuteWait();
+
             return View("~/Views/ModularForms/ModularLandingPage.cshtml");
 
         }
@@ -42,8 +50,8 @@ namespace PropertyInspection_WebApp.Controllers
         public IActionResult Index()
         {
 
-            return View("~/Views/ModularForms/ModularLandingPage.cshtml");
-            //return View("~/Views/Inspection/PropertyInfo.cshtml");
+            //return View("~/Views/ModularForms/ModularLandingPage.cshtml");
+            return View("~/Views/Inspection/PropertyInfo.cshtml");
         }
     }
 }

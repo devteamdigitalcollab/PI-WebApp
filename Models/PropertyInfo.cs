@@ -27,11 +27,11 @@ namespace PropertyInspection_WebApp.Models
         public string InspectionType { get; set; }
 
         [BsonElement("InspectionDateTime")]
-        [BindProperty, DisplayFormat(DataFormatString = "{0:yyyy-MM-ddTHH:mm}", ApplyFormatInEditMode = true)]
+        [BindProperty, DisplayFormat(DataFormatString = "{0:dd-MM-yyyyTHH:mm}", ApplyFormatInEditMode = true)]
         public DateTime InspectionDateTime { get; set; }
 
         [BsonElement("WhenAdded")]
-        [BindProperty, DisplayFormat(DataFormatString = "{0:yyyy-MM-ddTHH:mm}", ApplyFormatInEditMode = true)]
+        [BindProperty, DisplayFormat(DataFormatString = "{0:dd-MM-yyyyTHH:mm}", ApplyFormatInEditMode = true)]
         public DateTime WhenAdded { get; set; }
 
         [BsonElement("AddedBy")]

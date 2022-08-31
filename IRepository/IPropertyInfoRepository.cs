@@ -7,7 +7,7 @@ namespace PropertyInspection_WebApp.IRepository
 {
     public interface IPropertyInfoRepository
     {
-        PropertyInfo Save(PropertyInfo propertyinfo);
+        bool Save(PropertyInfo propertyinfo);
         PropertyInfo Get(string PropertyId);
         List<PropertyInfo> Gets();
         string Delete(string PropertyId);
