@@ -33,6 +33,10 @@
                 <h1 class="display-6" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Pre-Purchase Checklist </h1>
                 <h3 class="display-7" style="font-family:'Poppins'">Dashboard</h3>
             </div>
+            @if (ViewBag.Message != null)
+            {
+                <div class="p-1 mb-2 bg-success text-white">@ViewBag.Message</div>
+            }
             <br />
             <div class="input-group text-center mb-3">
                 <div class="card" style="width: 15rem;">

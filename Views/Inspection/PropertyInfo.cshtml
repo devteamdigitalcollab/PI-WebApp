@@ -19,6 +19,7 @@
 <container style="display:flex">
     <row class="col-3"></row>
     <row class="col-6">
+
         @using (Html.BeginForm("SavePropertyInfo", "PropertyInfo", FormMethod.Post))
         {
 
@@ -33,7 +34,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="InspectionType">Inspection Type</label>
-                <input id="InspectionType" asp-for="InspectionType" class="form-control" value="Pre-Purchase Inspection" readonly />
+                <input id="InspectionType" asp-for="InspectionType" class="form-control" value="Pre_Purchase_Inspection" readonly />
             </div>
             <div class="form-group">
                 <label asp-for="PropertyAddress">Property Address</label>
@@ -41,46 +42,16 @@
             </div>
             <div class="form-group">
                 <label asp-for="InspectionDateTime">Inspection Date/Time</label>
-                <input asp-format="{0:yyyy-MM-ddTHH:mm}" id="InspectionDateTime" asp-for="InspectionDateTime" class="form-control" />
+                <input asp-format="{0:dd-MM-yyyyTHH:mm}" id="InspectionDateTime" asp-for="InspectionDateTime" class="form-control" />
             </div>
             <div class="form-group ">
-                <input asp-for="WhenAdded" id="WhenAdded" value="@now" class="form-control" />
+                <input asp-for="WhenAdded" id="WhenAdded" value="@now" class="form-control" hidden />
                 <input asp-for="AddedBy" id="AddedBy" value="@user.Email" class="form-control" hidden />
             </div>
             <button id="add" type="submit" value="submit" class="btn btn-primary">Add</button>
 
-            @if (ViewBag.Message != null)
-            {
-                <script type="text/javascript">
-            window.onload = function () {
-                alert("@ViewBag.Message");
-            };
-                </script>
-
-            }
-            @*Html.RenderPartial("_ListPropertyInfoPartial.cshtml");*@
-
-
         }
     </row>
-    @*<table id="tblPropertyInfo">
-            <thead>
-                <tr>
-                    <th>PropertyID</th>
-                    <th>Client FirstName</th>
-                    <th>Client LastName</th>
-                    <th>Inspection Type</th>
-                    <th>Property Address</th>
-                    <th>Inspection Date</th>
-                    <th>Inspection Time</th>
-                    <th>WhenAdded</th>
-                    <th>AddedBy</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>*@
-
     <row class="col-3"></row>
 </container>
 
