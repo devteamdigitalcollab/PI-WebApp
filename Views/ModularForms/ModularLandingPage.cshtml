@@ -5,8 +5,9 @@
 }
 @{
     var user = await UserManager.GetUserAsync(User);
+    var pk = TempData["pk_propertyid"];
 }
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-3">
             <div class="card">
@@ -14,7 +15,7 @@
                 <div class="card-body">
                     <h5 class="card-title">@User.Identity.Name</h5>
                     <p class="card-text">
-                        Property Address: <br />
+                        Property Id: @pk <br />
                         Client Name:
                         Inspection Type:
                     </p>
@@ -29,10 +30,14 @@
             </ul>
         </div>
         <div class="col-9">
-            <div class="text-center">
+            <div class="">
                 <h1 class="display-6" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Pre-Purchase Checklist </h1>
                 <h3 class="display-7" style="font-family:'Poppins'">Dashboard</h3>
             </div>
+            @if (ViewBag.Message != null)
+            {
+                <div class="p-1 mb-2 bg-success text-white">@ViewBag.Message</div>
+            }
             <br />
             <div class="input-group text-center mb-3">
                 <div class="rpi-card-red" style="width: 15rem;">
