@@ -58,7 +58,6 @@ namespace PropertyInspection_WebApp.Controllers
 
         public IActionResult Index()
         {
-
             // return View("~/Views/ModularForms/ModularLandingPage.cshtml");
             return View("~/Views/Inspection/PropertyInfo.cshtml");
         }
