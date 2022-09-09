@@ -1,0 +1,47 @@
+﻿@model InspectionModel
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    var user = await UserManager.GetUserAsync(User);
+    var now = DateTime.Now;
+}
+<div class="text-center">
+    <h1 class="display-4">Inspection Information</h1>
+    <p>Creates a new inspection for a property.</p>
+</div>
+
+
+
+<container style="display:flex">
+    <row class="col-3"></row>
+    <row class="col-6">
+
+        @using (Html.BeginForm("SavePropertyInfo", "PropertyInfo", FormMethod.Post))
+        {
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="InspectionType">Inspection Type</label>
+                <input id="InspectionType" asp-for="InspectionType" class="form-control" value="Pre_Purchase_Inspection" readonly />
+                <span asp-validation-for="InspectionType" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="InspectionDateTime">Inspection Date/Time</label>
+                <input asp-format="{0:dd-MM-yyyyTHH:mm}" id="InspectionDateTime" asp-for="InspectionDateTime" class="form-control" />
+                <span asp-validation-for="InspectionDateTime" class="text-danger"></span>
+            </div>
+
+            <div class="form-group ">
+                <input asp-for="AddedBy" id="AddedBy" value="@user.Email" class="form-control" hidden />
+            </div>
+            <button id="add" type="submit" value="submit" class="btn btn-primary">Add</button>
+        }
+    </row>
+    <row class="col-3"></row>
+</container>
+

@@ -5,6 +5,7 @@
 }
 @{
     var user = await UserManager.GetUserAsync(User);
+    var pk = TempData["pk_propertyid"];
 }
 <div class="container-fluid">
     <div class="row">
@@ -14,7 +15,7 @@
                 <div class="card-body">
                     <h5 class="card-title">@User.Identity.Name</h5>
                     <p class="card-text">
-                        Property Address: <br />
+                        Property Id: @pk <br />
                         Client Name:
                         Inspection Type:
                     </p>
