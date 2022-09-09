@@ -1,10 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using AspNetCore.Identity.MongoDbCore.Infrastructure;
+using Microsoft.AspNetCore.Identity;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using PropertyInspection_WebApp.IRepository;
 using PropertyInspection_WebApp.Models;
 using PropertyInspection_WebApp.Settings;
+using PropertyInspection_WebApp.Helpers.TrasnactionHelper;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace PropertyInspection_WebApp.Repository
 {
@@ -14,6 +21,8 @@ namespace PropertyInspection_WebApp.Repository
         private MongoClient _mongoClient = null;
         private IMongoDatabase _mongoDatabase = null;
         private IMongoCollection<PropertyInfo> _propertyInfoTable = null;
+
+
 
         //DBConfig Injected
         public PropertyInfoRepository(MongoDBConfig mongoDBConfig)
@@ -40,14 +49,28 @@ namespace PropertyInspection_WebApp.Repository
             return _propertyInfoTable.Find(FilterDefinition<PropertyInfo>.Empty).ToList();
         }
 
-        public PropertyInfo Save(PropertyInfo propertyinfo)
+        public bool Save(PropertyInfo propertyinfo)
         {
-            var propertyInfoObj = _propertyInfoTable.Find(x => x.PropertyId == propertyinfo.PropertyId).FirstOrDefault();
-            if (propertyInfoObj == null)
-                _propertyInfoTable.InsertOne(propertyinfo);
-            else
-                _propertyInfoTable.ReplaceOne(x => x.PropertyId == propertyinfo.PropertyId, propertyinfo);
-            return propertyinfo;
+            try
+            {
+                propertyinfo.PropertyId = ObjectId.GenerateNewId().ToString();
+
+                // Check if value already exists in DB, IF not create new ELSE relpace existing
+                var result = _propertyInfoTable.Find(x => x.PropertyId == propertyinfo.PropertyId).FirstOrDefault();
+                if (result == null)
+                {
+                    _propertyInfoTable.InsertOne(propertyinfo);
+                }
+                else
+                {
+                    _propertyInfoTable.ReplaceOne(x => x.PropertyId == propertyinfo.PropertyId, propertyinfo);
+                }
+                return TransactionResultHelper.True;
+            }
+            catch (Exception ex)
+            {
+                throw new BsonException(Convert.ToString(ex));
+            }
         }
     }
 }

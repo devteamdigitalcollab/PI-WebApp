@@ -1,10 +1,18 @@
 using System.Threading;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
-using Microsoft.AspNetCore.Mvc;
 using PropertyInspection_WebApp.IRepository;
 using PropertyInspection_WebApp.Models;
 using PropertyInspection_WebApp.Repository;
+using PropertyInspection_WebApp.Helpers.TrasnactionHelper;
+using PropertyInspection_WebApp.Helpers.WaitHelper;
+using System;
+using Microsoft.AspNetCore.Http;
+using MongoDB.Entities;
+using System.Drawing;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace PropertyInspection_WebApp.Controllers
 {
@@ -23,12 +31,22 @@ namespace PropertyInspection_WebApp.Controllers
             return Json(propertyInfos);
         }
 
+        [HttpPost]
         public IActionResult SavePropertyInfo(PropertyInfo propertyInfo)
         {
-            var p = _propertyInfoRepo.Save(propertyInfo);
 
-            if (p != null)
-                ViewBag.Message = "Property Information added Successfully";
+            var result = _propertyInfoRepo.Save(propertyInfo);
+            TempData["pk_propertyid"] = propertyInfo.PropertyId;
+
+            if (result = TransactionResultHelper.True)
+                ViewBag.Message = "Property Information added successfully";
+            else
+                ViewBag.Message = "Property Information was not saved successfully";
+
+            ModelState.Clear();
+
+            WaitForViewBagReloadHelper.ExecuteWait();
+
             return View("~/Views/ModularForms/ModularLandingPage.cshtml");
         }
 
@@ -38,11 +56,10 @@ namespace PropertyInspection_WebApp.Controllers
             return Json(message);
         }
 
-
         public IActionResult Index()
         {
-            return View("~/Views/ModularForms/ModularLandingPage.cshtml");
-            //return View("~/Views/Inspection/PropertyInfo.cshtml");
+            // return View("~/Views/ModularForms/ModularLandingPage.cshtml");
+            return View("~/Views/Inspection/PropertyInfo.cshtml");
         }
     }
 }

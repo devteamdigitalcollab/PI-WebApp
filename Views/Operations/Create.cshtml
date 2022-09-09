@@ -10,23 +10,23 @@
 <form method="post">
     <div class="form-group">
         <label asp-for="Name"></label>
-        <input asp-for="Name" class="form-control" />
+        <input asp-for="Name" class="rpi-form-control" />
     </div>
     <div class="form-group">
         <label asp-for="Email"></label>
-        <input asp-for="Email" class="form-control" />
+        <input asp-for="Email" class="rpi-form-control" />
     </div>
     <div class="form-group">
         <label asp-for="Password"></label>
-        <input asp-for="Password" class="form-control" />
+        <input asp-for="Password" class="rpi-form-control" />
     </div>
     <div class="form-group">
         <label asp-for="RoleID"></label>
-        <select asp-for="RoleID" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+        <select asp-for="RoleID" class="form-select rpi-form-control form-select-lg mb-3" aria-label=".form-select-lg example">
             <option selected>Select User Role</option>
             <option value=1>Admin</option>
             <option value=2>Inspector</option>
         </select>
     </div>
-    <button type="submit" class="btn btn-primary">Create</button>
+    <button type="submit" class="rpi-btn rpi-btn-primary">Create</button>
 </form>
