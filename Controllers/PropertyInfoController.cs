@@ -55,7 +55,7 @@ namespace PropertyInspection_WebApp.Controllers
             var message = _propertyInfoRepo.Delete(propertyId);
             return Json(message);
         }
-
+        
         public IActionResult Index()
         {
             // return View("~/Views/ModularForms/ModularLandingPage.cshtml");

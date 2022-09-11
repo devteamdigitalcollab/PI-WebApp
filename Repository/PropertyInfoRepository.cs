@@ -23,7 +23,6 @@ namespace PropertyInspection_WebApp.Repository
         private IMongoCollection<PropertyInfo> _propertyInfoTable = null;
 
 
-
         //DBConfig Injected
         public PropertyInfoRepository(MongoDBConfig mongoDBConfig)
         {
