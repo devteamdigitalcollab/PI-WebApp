@@ -19,6 +19,7 @@ namespace PropertyInspection_WebApp.Settings
 
         //TABLES
         public string PropertyInfoTableName = "t_PropertyInfo";
+        public string PropertyImagesTableName = "t_PropertyImages";
     }
 }
 

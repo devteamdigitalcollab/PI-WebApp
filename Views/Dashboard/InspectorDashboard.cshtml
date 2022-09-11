@@ -6,35 +6,42 @@
 @{
     var user = await UserManager.GetUserAsync(User);
 }
-<div class="container">
+<div class="container-fluid">
     <div class="row">
         <div class="col-3">
             <div class="card">
-                <div class="imgDiv"><img class="card-img-top btnImage" src="~/Assets/user-100.png" alt="Card image cap"></div>
+                <div class="imgDiv"><img src="~/Assets/Regal.png" alt="Card image cap"></div>
                 <div class="card-body">
                     <h5 class="card-title">@User.Identity.Name</h5>
                     <p class="card-text">
                         Name: @User.Identity.Name <br />
                         Email: @user.Email
                         Type: Inspector
-
                     </p>
                 </div>
             </div>
             <ul class="list-group">
-                <li class="list-group-item active">Inspections</li>
-                <li class="list-group-item">Reports</li>
+                <li class="rpi-left-li-active">Inspections</li>
+                <li class="rpi-left-li">Inspectors</li>
+                <li class="rpi-left-li">Upcoming</li>
+                <li class="rpi-left-li">Corrections</li>
+                <li class="rpi-left-li">Approved</li>
+                <li class="rpi-left-li"><img class="card-img-top btnImage" src="~/Assets/Livehelp.png" alt="Card image cap"></>Help</li>
                 @*<li class="list-group-item">A fourth item</li>
                     <li class="list-group-item">And a fifth one</li>*@
             </ul>
         </div>
         <div class="col-9">
+            <div class="row">
+                <h1 class="rpi-red-title" style="width:75%">My Dashboard</h1> <button class="rpi-button-green" style="width: 20%;">+ Add New</button>
+                <hr style="margin-top: 10px;" />
+            </div>
             <div class="input-group mb-3">
-                <div class="card" style="width: 15rem;">
+                <div class="rpi-card-red" style="width: 14rem;">
                     <div class="card-body">
-                        <h5 class="card-title">Create Inspection</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Create new Inspection</h6>
-                        <!-- Button trigger modal -->
+                        <h5 class="card-title rpi-card-title">Create Inspection</h5>
+                        <a asp-area="" asp-controller="Operations" asp-action="CreateRole" class="card-link"><div class="imgDiv"><img class="card-img-top btnImage" src="~/Assets/Homework.png" alt="Card image cap"></div></a>
+                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inspectionTypeModal">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-plus" viewBox="0 0 16 16">
                                 <path d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
@@ -44,10 +51,10 @@
                         </button>
                     </div>
                 </div>
-                <div class="card" style="width: 15rem;">
+                <div class="rpi-card-red" style="width: 14rem;">
                     <div class="card-body">
-                        <h5 class="card-title">View Inspections</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">View all Inspections</h6>
+                        <h5 class="card-title rpi-card-title">View Inspections</h5>
+                        <a asp-area="" asp-controller="Operations" asp-action="CreateRole" class="card-link"><div class="imgDiv"><img class="card-img-top btnImage" src="~/Assets/Stickynote.png" alt="Card image cap"></div></a>
                         <button type="button" class="btn btn-primary position-relative" asp-area="" asp-controller="Operations" asp-action="CreateRole">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eyeglasses" viewBox="0 0 16 16">
                                 <path d="M4 6a2 2 0 1 1 0 4 2 2 0 0 1 0-4zm2.625.547a3 3 0 0 0-5.584.953H.5a.5.5 0 0 0 0 1h.541A3 3 0 0 0 7 8a1 1 0 0 1 2 0 3 3 0 0 0 5.959.5h.541a.5.5 0 0 0 0-1h-.541a3 3 0 0 0-5.584-.953A1.993 1.993 0 0 0 8 6c-.532 0-1.016.208-1.375.547zM14 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0z" />
@@ -56,6 +63,45 @@
                             <span class="badge text-bg-danger">4</span>
                         </button>
                     </div>
+                </div>
+                <div class="rpi-card" style="width: 28rem;">
+                    <div class="card-body">
+                        <h5 class="card-title rpi-red-title">Upcoming Inspections</h5>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3 hstack">
+            <div class="vstack" style="margin-top:40px; font-size:smaller; font-weight:200;">
+                <h1 class="display-6" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"> </h1>
+                <h3 class="display-7" style="font-family:'Poppins'">Upcoming</h3>
+
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">2/14 Coronet Place</h5>
+                            <small>in 3 days</small>
+                        </div>
+                        <p class="mb-1">Client: Jon Doe</p>
+                        <small>Pre-Purchase Inspection</small>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">93 Hepburn Rd</h5>
+                            <small>in 13 days</small>
+                        </div>
+                        <p class="mb-1">Client: Jane James</p>
+                        <small>Pre-Purchase Inspection</small>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">25/182 FlatBush School Rd</h5>
+                            <small>in 13 days</small>
+                        </div>
+                        <p class="mb-1">Client: Jane James</p>
+                        <small>Pre-Purchase Inspection</small>
+                    </a>
                 </div>
             </div>
         </div>
@@ -67,51 +113,51 @@
     <div class="modal-dialog modal-dialog-centered inspectionTypeModal" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="inspectionTypeModalLongTitle">Inspection Type</h5>
+                <h5 class="rpi-red-title" id="inspectionTypeModalLongTitle">Select Inspection Type</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body inspectionTypeModalBody">
-                <div class="card" style="width: 22rem;">
+                <div class="rpi-card-red" style="width: 22rem;">
                     <div class="card-body">
-                        <h5 class="card-title">Pre-Purchase Inspection</h5>
+                        <h5 class="rpi-card-title">Pre-Purchase Inspection</h5>
                         <p class="card-text">
                             This inspection type is used when a property needs to be inspected prior to a customer's purchase.
                         </p>
-                        <input type="button" class="btn btn-primary" value="Create" onclick="location.href='@Url.Action("PP_Inspection", "InspectionType")'" />
+                        <input type="button" class="rpi-btn rpi-button-yellow" value="Create" onclick="location.href='@Url.Action("PP_Inspection", "InspectionType")'" />
                     </div>
                 </div>
-                <div class="card" style="width: 22rem;">
+                <div class="rpi-card-red" style="width: 22rem;">
                     <div class="card-body">
-                        <h5 class="card-title">Maintenance Report</h5>
+                        <h5 class="rpi-card-title">Maintenance Report</h5>
                         <p class="card-text">
                             This inspection type is used when a property needs to be inspected for a maintenance report.
                         </p>
-                        <input type="button" class="btn btn-primary" value="Create" onclick="location.href='@Url.Action("PP_Inspection", "InspectionType")'" />
+                        <input type="button" class="rpi-btn rpi-button-yellow" value="Create" onclick="location.href='@Url.Action("PP_Inspection", "InspectionType")'" />
                     </div>
                 </div>
-                <div class="card" style="width: 22rem;">
+                <div class="rpi-card-red" style="width: 22rem;">
                     <div class="card-body">
-                        <h5 class="card-title">Meth Report</h5>
+                        <h5 class="rpi-card-title">Meth Report</h5>
                         <p class="card-text">
                             This inspection type is used when a property needs to be inspected any type of Meth Preparation.
                         </p>
-                        <input type="button" class="btn btn-primary" value="Create" onclick="location.href='@Url.Action("PP_Inspection", "InspectionType")'" />
+                        <input type="button" class="rpi-btn rpi-button-yellow" value="Create" onclick="location.href='@Url.Action("PP_Inspection", "InspectionType")'" />
                     </div>
                 </div>
-                <div class="card" style="width: 22rem;">
+                <div class="rpi-card-red" style="width: 22rem;">
                     <div class="card-body">
-                        <h5 class="card-title">Healthy Home</h5>
+                        <h5 class="rpi-card-title">Healthy Home</h5>
                         <p class="card-text">
                             This inspection type is used when a property needs to be inspected Healthy Homes.
                         </p>
-                        <input type="button" class="btn btn-primary" value="Create" onclick="location.href='@Url.Action("PP_Inspection", "InspectionType")'" />
+                        <input type="button" class="rpi-btn rpi-button-yellow" value="Create" onclick="location.href='@Url.Action("PP_Inspection", "InspectionType")'" />
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="rpi-btn rpi-button-red" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

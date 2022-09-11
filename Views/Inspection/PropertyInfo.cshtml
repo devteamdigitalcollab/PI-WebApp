@@ -17,66 +17,83 @@
 <container style="display:flex">
     <row class="col-3"></row>
     <row class="col-6">
-        @using (Html.BeginForm("SavePropertyInfo", "PropertyInfo", FormMethod.Post))
-        {
-
+        <form method="post" asp-controller="PropertyInfo" asp-action="SavePropertyInfo" enctype="multipart/form-data">
             <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ClientFName">Client First Name</label>
-                <input id="ClientFName" asp-for="ClientFName" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label asp-for="ClientLName">Client Last Name</label>
-                <input id="ClientLName" asp-for="ClientLName" class="form-control" />
-            </div>
-            <div class="form-group">
-                <label asp-for="InspectionType">Inspection Type</label>
-                <input id="InspectionType" asp-for="InspectionType" class="form-control" value="Pre-Purchase Inspection" readonly />
+            <div class="row g-2">
+                <div class="col-md">
+                    <div class="form-group">
+                        <label asp-for="ClientFName">Client First Name</label>
+                        <input id="ClientFName" asp-for="ClientFName" class="form-control" />
+                        <span asp-validation-for="ClientFName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-group">
+                        <label asp-for="ClientLName">Client Last Name</label>
+                        <input id="ClientLName" asp-for="ClientLName" class="form-control" />
+                        <span asp-validation-for="ClientLName" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="PropertyAddress">Property Address</label>
                 <input id="PropertyAddress" asp-for="PropertyAddress" class="form-control" />
+                <span asp-validation-for="PropertyAddress" class="text-danger"></span>
             </div>
+
+            <fieldset title="Occupancy Details">
+                <div class="form-group">
+                    <label asp-for="PeoplePresent">People Present</label>
+                    <select id="PeoplePresent" asp-for="PeoplePresent" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                    <span asp-validation-for="PeoplePresent" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="HouseOccupied">House Occupied</label>
+                    <select id="HouseOccupied" asp-for="HouseOccupied" class="form-control">
+                        <option value="Occupied">Occupied</option>
+                        <option value="NotOccupied">Not Occupied</option>
+                    </select>
+                    <span asp-validation-for="HouseOccupied" class="text-danger"></span>
+                </div>
+            </fieldset>
+
+            <fieldset title="Legal Information">
+                <div class="form-group">
+                    <label asp-for="LegalDescription">Legal Description</label>
+                    <input id="LegalDescription" asp-for="LegalDescription" class="form-control" />
+                    <span asp-validation-for="LegalDescription" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CertOfTitle">Certificate Of Title</label>
+                    <input id="CertOfTitle" asp-for="CertOfTitle" class="form-control" />
+                    <span asp-validation-for="CertOfTitle" class="text-danger"></span>
+                </div>
+            </fieldset>
+
+
             <div class="form-group">
-                <label asp-for="InspectionDateTime">Inspection Date/Time</label>
-                <input asp-format="{0:yyyy-MM-ddTHH:mm}" id="InspectionDateTime" asp-for="InspectionDateTime" class="form-control" />
+                <label asp-for="FileUploaded">Property Image</label>
+                <input type="file" capture="" id="FileUploaded" asp-for="FileUploaded" class="form-control" />
+                <span asp-validation-for="FileUploaded" class="text-danger"></span>
             </div>
-            <div class="form-group ">
-                <input asp-for="WhenAdded" id="WhenAdded" value="@now" class="form-control" />
+
+            <div class="form-group">
                 <input asp-for="AddedBy" id="AddedBy" value="@user.Email" class="form-control" hidden />
             </div>
             <button id="add" type="submit" value="submit" class="btn btn-primary">Add</button>
-
-            @if (ViewBag.Message != null)
-            {
-                <script type="text/javascript">
-            window.onload = function () {
-                alert("@ViewBag.Message");
-            };
-                </script>
-
-            }
-            @*Html.RenderPartial("_ListPropertyInfoPartial.cshtml");*@
-
-        }
+        </form>
     </row>
-    @*<table id="tblPropertyInfo">
-            <thead>
-                <tr>
-                    <th>PropertyID</th>
-                    <th>Client FirstName</th>
-                    <th>Client LastName</th>
-                    <th>Inspection Type</th>
-                    <th>Property Address</th>
-                    <th>Inspection Date</th>
-                    <th>Inspection Time</th>
-                    <th>WhenAdded</th>
-                    <th>AddedBy</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>*@
     <row class="col-3"></row>
 </container>
 
