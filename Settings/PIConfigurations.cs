@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Reflection.Metadata;
+
 namespace PropertyInspection_WebApp.Settings
 {
-    public class MongoDBConfig
+    public class PIConfigurations
     {
         /// <summary>
         /// This cs file works as a .config file.
@@ -18,8 +20,13 @@ namespace PropertyInspection_WebApp.Settings
         public string PropertyDatabaseName = "PropertyDB";
 
         //TABLES
-        public string PropertyInfoTableName = "t_PropertyInfo";
-        public string PropertyImagesTableName = "t_PropertyImages";
+        public string PropertyInfoTableName = "PropertyInfo";
+
+        //GRIDFS BUCKETNAMES
+        public string PROPERTYINFOBUCKETNAME = "PropertyInfo_Images";
+
+        //GRIDFS GENERIC CHUNCKSIZE = 1MB
+        public int CHUNCKSIZE = 1048576;
     }
 }
 

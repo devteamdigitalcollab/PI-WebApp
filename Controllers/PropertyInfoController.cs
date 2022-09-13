@@ -8,7 +8,6 @@ using PropertyInspection_WebApp.Helpers.TrasnactionHelper;
 using PropertyInspection_WebApp.Helpers.WaitHelper;
 using System;
 using Microsoft.AspNetCore.Http;
-using MongoDB.Entities;
 using System.Drawing;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Hosting;

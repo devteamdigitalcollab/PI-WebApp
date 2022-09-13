@@ -17,7 +17,8 @@
     <PackageReference Include="MongoDB.Bson" Version="2.17.1" />
     <PackageReference Include="MongoDB.Driver.Core" Version="2.17.1" />
     <PackageReference Include="MongoDB.Driver" Version="2.17.1" />
-    <PackageReference Include="MongoDB.Entities" Version="20.26.5" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="MongoDB.Driver.GridFS" Version="2.17.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,6 +54,8 @@
     <None Remove="MongoDB.Entities" />
     <None Remove="Models\Pre-PurchaseModels\BuildingElementsModels\" />
     <None Remove="MongoDB.Driver.GridFS" />
+    <None Remove="Newtonsoft.Json" />
+    <None Remove="Helpers\ProcessingHelper\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Account\" />
@@ -75,5 +78,6 @@
     <Folder Include="Helpers\TrasnactionHelper\" />
     <Folder Include="Helpers\WaitHelper\" />
     <Folder Include="Models\Pre-PurchaseModels\BuildingElementsModels\" />
+    <Folder Include="Helpers\ProcessingHelper\" />
   </ItemGroup>
 </Project>

@@ -14,6 +14,9 @@ using Microsoft.AspNetCore.Http;
 using PropertyInspection_WebApp.IRepository;
 using PropertyInspection_WebApp.Repository;
 using Microsoft.Extensions.Options;
+using PropertyInspection_WebApp.Helpers.ProcessingHelper;
+using MongoDB.Driver.GridFS;
+using MongoDB.Driver;
 
 namespace PropertyInspection_WebApp
 {
@@ -29,14 +32,15 @@ namespace PropertyInspection_WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var mongoDbSettings = Configuration.GetSection(nameof(MongoDBConfig)).Get<MongoDBConfig>();
+            var mongoDbSettings = Configuration.GetSection(nameof(PIConfigurations)).Get<PIConfigurations>();
             services.AddIdentity<ApplicationUser, ApplicationRole>()
                        .AddMongoDbStores<ApplicationUser, ApplicationRole, Guid>
                        (
                            mongoDbSettings.ConnectionString, mongoDbSettings.Name
                        );
-            services.AddSingleton(sp => sp.GetRequiredService<IOptions<MongoDBConfig>>().Value);
+            services.AddSingleton(sp => sp.GetRequiredService<IOptions<PIConfigurations>>().Value);
             services.AddScoped<IPropertyInfoRepository, PropertyInfoRepository>();
+
             services.AddControllersWithViews();
             services.ConfigureApplicationCookie(options =>
             {
