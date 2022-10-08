@@ -5,7 +5,9 @@
 }
 @{
     var user = await UserManager.GetUserAsync(User);
-    var pk = TempData["pk_propertyid"];
+    var pk_address = TempData["pk_property_address"];
+    var pk_clientName = TempData["pk_property_ClientName"];
+    var pk_inspectionType = TempData["pk_property_inspectionType"];
 }
 <div class="container-fluid">
     <div class="row">
@@ -13,11 +15,11 @@
             <div class="card">
                 <div class="imgDiv"><img class="card-img-top btnImage" src="~/Assets/smart-home.png" alt="Card image cap"></div>
                 <div class="card-body">
-                    <h5 class="card-title">@User.Identity.Name</h5>
-                    <p class="card-text">
-                        Property Id: @pk <br />
-                        Client Name:
-                        Inspection Type:
+                    <h5 class="card-title">Inspector: @User.Identity.Name</h5>
+                    <p class="card-text" style="color:black !important">
+                        Property: @pk_address <br />
+                        Client Name: @pk_clientName <br />
+                        Inspection Type: @pk_inspectionType
                     </p>
                 </div>
             </div>

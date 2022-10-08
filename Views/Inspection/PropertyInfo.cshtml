@@ -35,6 +35,7 @@
                         <span asp-validation-for="ClientLName" class="text-danger"></span>
                     </div>
                 </div>
+
             </div>
             <div class="form-group">
                 <label asp-for="PropertyAddress">Property Address</label>
@@ -82,7 +83,6 @@
                 </div>
             </fieldset>
 
-
             <div class="form-group">
                 <label asp-for="RawImageFile">Property Image</label>
                 <input type="file" capture="" id="RawImageFile" asp-for="RawImageFile" class="form-control" />
@@ -91,6 +91,7 @@
 
             <div class="form-group">
                 <input asp-for="AddedBy" id="AddedBy" value="@user.Email" class="form-control" hidden />
+                <input asp-for="InspectionType" id="InspectionType" class="form-control" hidden />
             </div>
             <button id="add" type="submit" value="submit" class="btn btn-primary">Add</button>
         </form>

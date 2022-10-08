@@ -15,8 +15,8 @@
                     <h5 class="card-title">@User.Identity.Name</h5>
                     <p class="card-text">
                         Name: @User.Identity.Name <br />
-                        Email: @user.Email
-                        Type: Inspector
+                        Email: @user.Email <br />
+                        Type: @user.Roles <br />
                     </p>
                 </div>
             </div>
@@ -41,7 +41,7 @@
                     <div class="card-body">
                         <h5 class="card-title rpi-card-title">Create Inspection</h5>
                         <a asp-area="" asp-controller="Operations" asp-action="CreateRole" class="card-link"><div class="imgDiv"><img class="card-img-top btnImage" src="~/Assets/Homework.png" alt="Card image cap"></div></a>
-                         <!-- Button trigger modal -->
+                        <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inspectionTypeModal">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-plus" viewBox="0 0 16 16">
                                 <path d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />

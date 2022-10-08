@@ -54,6 +54,9 @@ namespace PropertyInspection_WebApp.Models
         [BsonIgnore]
         public IFormFile RawImageFile { get; set; }
 
+        [BsonIgnore]
+        public string InspectionType { get; set; }
+
         [Required]
         [BsonElement("PropertyImage")]
         public string PropertyImage { get; set; }

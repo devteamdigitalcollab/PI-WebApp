@@ -6,6 +6,8 @@ namespace PropertyInspection_WebApp.Controllers
     {
         public IActionResult PP_Inspection()
         {
+
+            TempData["pk_inspectionType"] = "Pre-Pruchase Inspeciton";
             return RedirectToAction("Index", "PropertyInfo");
         }
     }
