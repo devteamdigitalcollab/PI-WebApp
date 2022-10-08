@@ -36,7 +36,7 @@ namespace PropertyInspection_WebApp
             services.AddIdentity<ApplicationUser, ApplicationRole>()
                        .AddMongoDbStores<ApplicationUser, ApplicationRole, Guid>
                        (
-                           mongoDbSettings.ConnectionString, mongoDbSettings.Name
+                           mongoDbSettings.CONNECTIONSTRING, mongoDbSettings.NAME
                        );
             services.AddSingleton(sp => sp.GetRequiredService<IOptions<PIConfigurations>>().Value);
             services.AddScoped<IPropertyInfoRepository, PropertyInfoRepository>();

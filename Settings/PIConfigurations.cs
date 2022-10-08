@@ -10,17 +10,17 @@ namespace PropertyInspection_WebApp.Settings
         /// All DB names and tables are declared and accessed by other classes by using Dependency Injection.
         /// This class can be injected into the calling class's constructor.
         /// </summary>
-        public string Name { get; init; }
-        public string Username { get; init; }
-        public string Password { get; init; }
-        public string ConnectionString => $"mongodb+srv://system:WCTPEMeCebceg466@piwebappcluster.i6ipfdi.mongodb.net/?retryWrites=true&w=majority";
+        public string NAME { get; init; }
+        public string USERNAME { get; init; }
+        public string PASSWORD { get; init; }
+        public string CONNECTIONSTRING => $"mongodb+srv://system:WCTPEMeCebceg466@piwebappcluster.i6ipfdi.mongodb.net/?retryWrites=true&w=majority";
 
         //DATABASES
-        public string IdentityDatabaseName = "Identity"; //System DB - Do not alter.
-        public string PropertyDatabaseName = "PropertyDB";
+        public string IDENTITYDATABASENAME = "Identity"; //System DB - Do not alter.
+        public string PROPERTYDATABASENAME = "PropertyDB";
 
         //TABLES
-        public string PropertyInfoTableName = "PropertyInfo";
+        public string PROPERTYINFOTABLE = "PropertyInfo";
 
         //GRIDFS BUCKETNAMES
         public string PROPERTYINFOBUCKETNAME = "PropertyInfo_Images";
