@@ -33,20 +33,31 @@ namespace PropertyInspection_WebApp.Controllers
         [HttpPost]
         public IActionResult SavePropertyInfo(PropertyInfo propertyInfo)
         {
+            try
+            {
+                propertyInfo.InspectionType = Convert.ToString(TempData["pk_inspectionType"]);
 
-            var result = _propertyInfoRepo.Save(propertyInfo);
-            TempData["pk_propertyid"] = propertyInfo.PropertyId;
+                var result = _propertyInfoRepo.Save(propertyInfo);
 
-            if (result = TransactionResultHelper.True)
-                ViewBag.Message = "Property Information added successfully";
-            else
-                ViewBag.Message = "Property Information was not saved successfully";
+                TempData["pk_property_address"] = propertyInfo.PropertyAddress;
+                TempData["pk_property_ClientName"] = propertyInfo.ClientFName + ' ' + propertyInfo.ClientLName;
+                TempData["pk_property_inspectionType"] = propertyInfo.InspectionType;
 
-            ModelState.Clear();
+                if (result = TransactionResultHelper.True)
+                    ViewBag.Message = "Property Information added successfully";
+                else
+                    ViewBag.Message = "Property Information was not saved successfully";
 
-            WaitForViewBagReloadHelper.ExecuteWait();
+                ModelState.Clear();
 
-            return View("~/Views/ModularForms/ModularLandingPage.cshtml");
+                WaitForViewBagReloadHelper.ExecuteWait();
+
+                return View("~/Views/ModularForms/ModularLandingPage.cshtml");
+            }
+            catch (Exception)
+            {
+                return View("~/Views/ExceptionHandling/redirectToErrorPage.cshtml");
+            }
         }
 
         public JsonResult DeletePropertyInfo(string propertyId)
@@ -57,6 +68,7 @@ namespace PropertyInspection_WebApp.Controllers
 
         public IActionResult Index()
         {
+
             // return View("~/Views/ModularForms/ModularLandingPage.cshtml");
             return View("~/Views/Inspection/PropertyInfo.cshtml");
         }

@@ -56,6 +56,7 @@
     <None Remove="MongoDB.Driver.GridFS" />
     <None Remove="Newtonsoft.Json" />
     <None Remove="Helpers\ProcessingHelper\" />
+    <None Remove="Views\ExceptionHandling\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Account\" />
@@ -79,5 +80,6 @@
     <Folder Include="Helpers\WaitHelper\" />
     <Folder Include="Models\Pre-PurchaseModels\BuildingElementsModels\" />
     <Folder Include="Helpers\ProcessingHelper\" />
+    <Folder Include="Views\ExceptionHandling\" />
   </ItemGroup>
 </Project>
