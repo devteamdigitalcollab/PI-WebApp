@@ -13,17 +13,17 @@ namespace PropertyInspection_WebApp.Settings
         public string NAME { get; init; }
         public string USERNAME { get; init; }
         public string PASSWORD { get; init; }
-        public string CONNECTIONSTRING => $"mongodb+srv://system:WCTPEMeCebceg466@piwebappcluster.i6ipfdi.mongodb.net/?retryWrites=true&w=majority";
+        public string CONNECTIONSTRING => $"mongodb+srv://system:lamDit8UGQjMiD2t@piwebappcluster.dprjgsi.mongodb.net/?retryWrites=true&w=majority";
 
         //DATABASES
         public string IDENTITYDATABASENAME = "Identity"; //System DB - Do not alter.
-        public string PROPERTYDATABASENAME = "PropertyDB";
+        public string PROPERTYDATABASENAME = "PROPERTY_DB";
 
         //TABLES
-        public string PROPERTYINFOTABLE = "PropertyInfo";
+        public string PROPERTYINFOTABLE = "c_property_info";
 
         //GRIDFS BUCKETNAMES
-        public string PROPERTYINFOBUCKETNAME = "PropertyInfo_Images";
+        public string PROPERTYINFOBUCKETNAME = "GFS_property_info_images";
 
         //GRIDFS GENERIC CHUNCKSIZE = 1MB
         public int CHUNCKSIZE = 1048576;
