@@ -17,6 +17,9 @@ namespace PropertyInspection_WebApp.Models
 {
     public class PropertyInfo
     {
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string _id { get; set; }
+
         /// <summary>
         /// Primary Key 
         /// </summary>
@@ -54,7 +57,8 @@ namespace PropertyInspection_WebApp.Models
         [BsonIgnore]
         public IFormFile RawImageFile { get; set; }
 
-        [BsonIgnore]
+        [Required]
+        [BsonElement("InspectionType")]
         public string InspectionType { get; set; }
 
         [Required]

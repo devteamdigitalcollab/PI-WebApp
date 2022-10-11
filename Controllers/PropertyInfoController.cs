@@ -18,6 +18,7 @@ namespace PropertyInspection_WebApp.Controllers
     public class PropertyInfoController : Controller
     {
         private IPropertyInfoRepository _propertyInfoRepo;
+        private string DbInsertMsg;
 
         public PropertyInfoController(IPropertyInfoRepository propertyInfoRepo)
         {
@@ -37,22 +38,15 @@ namespace PropertyInspection_WebApp.Controllers
             {
                 propertyInfo.InspectionType = Convert.ToString(TempData["pk_inspectionType"]);
 
+                //Insert Property in DB
                 var result = _propertyInfoRepo.Save(propertyInfo);
-
-                TempData["pk_property_address"] = propertyInfo.PropertyAddress;
-                TempData["pk_property_ClientName"] = propertyInfo.ClientFName + ' ' + propertyInfo.ClientLName;
-                TempData["pk_property_inspectionType"] = propertyInfo.InspectionType;
-
-                if (result = TransactionResultHelper.True)
-                    ViewBag.Message = "Property Information added successfully";
-                else
-                    ViewBag.Message = "Property Information was not saved successfully";
 
                 ModelState.Clear();
 
                 WaitForViewBagReloadHelper.ExecuteWait();
 
-                return View("~/Views/ModularForms/ModularLandingPage.cshtml");
+                return RedirectToAction("Index", "ModularForm", new { id = propertyInfo.PropertyId });
+
             }
             catch (Exception)
             {
