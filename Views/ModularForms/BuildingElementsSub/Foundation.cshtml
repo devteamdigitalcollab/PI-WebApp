@@ -5,6 +5,10 @@
 }
 @{
     var user = await UserManager.GetUserAsync(User);
+    var pk_propertyid = TempData["pk_property_id"];
+    var pk_address = TempData["pk_property_address"];
+    var pk_clientName = TempData["pk_property_ClientName"];
+    var pk_inspectionType = TempData["pk_property_inspectionType"];
 }
 <div class="container-fluid">
     <div class="row">
@@ -13,15 +17,16 @@
                 <div class="imgDiv"><img class="card-img-top btnImage" src="~/Assets/smart-home.png" alt="Card image cap"></div>
                 <div class="card-body">
                     <h5 class="card-title">@User.Identity.Name</h5>
-                    <p class="card-text">
-                        Property Address: <br />
-                        Client Name:
-                        Inspection Type:
+                    <p class="card-text" style="color:black !important">
+                        Property: @pk_address <br />
+                        Client Name: @pk_clientName <br />
+                        Inspection Type: @pk_inspectionType <br />
+                        PropertyID: @pk_propertyid
                     </p>
                 </div>
             </div>
             <ul class="list-group">
-                <li class="list-group-item"><a title="Returning to dahsboard will result in loss of data" asp-area="" asp-controller="ModularForm" asp-action="Index" class="card-link"><i class="fa-thin fa-house-person-return"></i>Checklist Dashboard</a></li>
+                <li class="list-group-item"><a title="Returning to dahsboard will result in loss of data" asp-area="" asp-controller="ModularForm" asp-action="RedirectedIndexCall" asp-route-id="@pk_propertyid" class="card-link"><i class="fa-thin fa-house-person-return"></i>Checklist Dashboard</a></li>
             </ul>
         </div>
         <div class="col-6">
