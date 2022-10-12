@@ -18,7 +18,6 @@ namespace PropertyInspection_WebApp.Controllers
     public class PropertyInfoController : Controller
     {
         private IPropertyInfoRepository _propertyInfoRepo;
-        private string DbInsertMsg;
 
         public PropertyInfoController(IPropertyInfoRepository propertyInfoRepo)
         {

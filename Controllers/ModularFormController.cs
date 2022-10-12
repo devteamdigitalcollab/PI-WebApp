@@ -18,8 +18,6 @@ namespace PropertyInspection_WebApp.Controllers
     public class ModularFormController : Controller
     {
         private readonly IPropertyInfoRepository _propertyInfoRepo;
-        private readonly string viewBagMsg;
-        private string propertyInfoFromPreviousControllerContext;
 
         public ModularFormController(IPropertyInfoRepository propertyInfoRepo)
         {
@@ -42,11 +40,9 @@ namespace PropertyInspection_WebApp.Controllers
         }
 
 
-
         public IActionResult BuildingElements(string id)
         {
             LoadPropertyInfoForSideBar(id);
-
             return View("~/Views/ModularForms/BuildingElementsSub/Foundation.cshtml");
         }
 
