@@ -49,7 +49,7 @@
                         <h5 class="rpi-card-title">Building Elements</h5>
                         <h6 class="card-text">Foundation, Wall Framing, Roof Space</h6>
                         <br />
-                        <button type="button" class="rpi-btn rpi-button-yellow" onclick="location.href='@Url.Action("BuildingElements", "ModularForm", new {id = pk_propertyid})'">
+                        <button data-toggle="modal" data-target="#BEModal" type="button" class="rpi-btn rpi-button-yellow">
                             Complete
                         </button>
                     </div>
@@ -98,3 +98,45 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="BEModal" tabindex="-1" role="dialog" aria-labelledby="BEModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered BEModal" role="document">
+        <div class="modal-content vsatck">
+            <div class="modal-header vstack">
+                <h5 class="rpi-red-title" id="BEModalLongTitle">Select checklist for Building Elements</h5>
+                <small>Please select a checklist that from the below</small>
+            </div>
+            <div class="modal-body BEModalBody vstack">
+                <div class="rpi-card-red" style="width: 22rem;">
+                    <div class="card-body vstack">
+                        <h5 class="rpi-card-title">Foundation Checklist</h5>
+                        <p class="card-text">
+                        </p>
+                        <input type="button" class="rpi-btn rpi-button-yellow" value="Create" onclick="location.href='@Url.Action("BuildingElements", "ModularForm", new {id = pk_propertyid})'" />
+                    </div>
+                </div>
+                <div class="rpi-card-red" style="width: 22rem;">
+                    <div class="card-body vstack">
+                        <h5 class="rpi-card-title">Wall Framing Checklist</h5>
+                        <p class="card-text">
+                        </p>
+                        <input type="button" class="rpi-btn rpi-button-yellow" value="Create" onclick="location.href='@Url.Action("BuildingElements", "ModularForm", new {id = pk_propertyid})'" />
+                    </div>
+                </div>
+                <div class="rpi-card-red" style="width: 22rem;">
+                    <div class="card-body vstack">
+                        <h5 class="rpi-card-title">Roof Space Checklist</h5>
+                        <p class="card-text">
+                        </p>
+                        <input type="button" class="rpi-btn rpi-button-yellow" value="Create" onclick="location.href='@Url.Action("BuildingElements", "ModularForm", new {id = pk_propertyid})'" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer vstack">
+                <button type="button" class="rpi-btn rpi-button-red" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+

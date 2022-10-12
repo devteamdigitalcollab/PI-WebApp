@@ -65,9 +65,35 @@
                     </div>
                 </div>
                 <div class="rpi-card" style="width: 28rem;">
-                    <div class="card-body">
+                    <div class="card-body hstack">
                         <h5 class="card-title rpi-red-title">Upcoming Inspections</h5>
 
+                        <div class="list-group">
+                            <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">2/14 Coronet Place</h5>
+                                    <small>in 3 days</small>
+                                </div>
+                                <p class="mb-1">Client: Jon Doe</p>
+                                <small>Pre-Purchase Inspection</small>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">93 Hepburn Rd</h5>
+                                    <small>in 13 days</small>
+                                </div>
+                                <p class="mb-1">Client: Jane James</p>
+                                <small>Pre-Purchase Inspection</small>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">25/182 FlatBush School Rd</h5>
+                                    <small>in 13 days</small>
+                                </div>
+                                <p class="mb-1">Client: Jane James</p>
+                                <small>Pre-Purchase Inspection</small>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -77,32 +103,7 @@
                 <h1 class="display-6" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"> </h1>
                 <h3 class="display-7" style="font-family:'Poppins'">Upcoming</h3>
 
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">2/14 Coronet Place</h5>
-                            <small>in 3 days</small>
-                        </div>
-                        <p class="mb-1">Client: Jon Doe</p>
-                        <small>Pre-Purchase Inspection</small>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">93 Hepburn Rd</h5>
-                            <small>in 13 days</small>
-                        </div>
-                        <p class="mb-1">Client: Jane James</p>
-                        <small>Pre-Purchase Inspection</small>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">25/182 FlatBush School Rd</h5>
-                            <small>in 13 days</small>
-                        </div>
-                        <p class="mb-1">Client: Jane James</p>
-                        <small>Pre-Purchase Inspection</small>
-                    </a>
-                </div>
+
             </div>
         </div>
     </div>
@@ -114,13 +115,11 @@
 <div class="modal fade" id="inspectionTypeModal" tabindex="-1" role="dialog" aria-labelledby="inspectionTypeModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered inspectionTypeModal" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header vstack">
                 <h5 class="rpi-red-title" id="inspectionTypeModalLongTitle">Select Inspection Type</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <small>Please select an inspection type</small>
             </div>
-            <div class="modal-body inspectionTypeModalBody">
+            <div class="modal-body inspectionTypeModalBody hstack">
                 <div class="rpi-card-red" style="width: 22rem;">
                     <div class="card-body">
                         <h5 class="rpi-card-title">Pre-Purchase Inspection</h5>
@@ -158,7 +157,7 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer vstack">
                 <button type="button" class="rpi-btn rpi-button-red" data-dismiss="modal">Close</button>
             </div>
         </div>
