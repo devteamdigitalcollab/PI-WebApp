@@ -1,0 +1,1 @@
+web: bin2/qgtunnel cd $HOME/heroku_output && ./PropertyInspection-WebApp
