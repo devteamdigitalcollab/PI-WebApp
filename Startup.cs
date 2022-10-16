@@ -22,12 +22,16 @@ namespace PropertyInspection_WebApp
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public IConfigurationRoot Configuration { get; set; }
+        public Startup(IWebHostEnvironment env)
         {
-            Configuration = configuration;
-        }
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
-        public IConfiguration Configuration { get; }
+            Configuration = builder.Build();
+
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -46,6 +50,7 @@ namespace PropertyInspection_WebApp
             {
                 options.AccessDeniedPath = new PathString("/Secured/AccessDeniedIndex");
             });
+            services.Configure<PIConfigurations>(Configuration.GetSection("PIConfigurations"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,6 +79,7 @@ namespace PropertyInspection_WebApp
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
         }
     }
 }
