@@ -13,7 +13,7 @@ namespace PropertyInspection_WebApp.Settings
         public string NAME { get; init; }
         public string USERNAME { get; init; }
         public string PASSWORD { get; init; }
-        public string CONNECTIONSTRING => $"mongodb+srv://system:lamDit8UGQjMiD2t@piwebappcluster.dprjgsi.mongodb.net/?retryWrites=true&w=majority";
+        public string CONNECTIONSTRING => $"mongodb+srv://{USERNAME}:{PASSWORD}@piwebappcluster.dprjgsi.mongodb.net/?retryWrites=true&w=majority";
 
         //DATABASES
         public string IDENTITYDATABASENAME = "Identity"; //System DB - Do not alter.
