@@ -25,6 +25,8 @@ namespace PropertyInspection_WebApp.Controllers
 
         }
 
+
+        #region LandingPage Views
         public IActionResult Index(string id)
         {
             LoadPropertyInfoForSideBar(id);
@@ -38,13 +40,35 @@ namespace PropertyInspection_WebApp.Controllers
             LoadPropertyInfoForSideBar(id);
             return View("~/Views/ModularForms/ModularLandingPage.cshtml");
         }
+        #endregion LandingPage Views
 
 
-        public IActionResult BuildingElements(string id)
+        #region BuildingElements Sub Views
+
+        public IActionResult Foundation(string id)
         {
             LoadPropertyInfoForSideBar(id);
             return View("~/Views/ModularForms/BuildingElementsSub/Foundation.cshtml");
         }
+
+        public IActionResult WallFraming(string id)
+        {
+            LoadPropertyInfoForSideBar(id);
+            return View("~/Views/ModularForms/BuildingElementsSub/WallFraming.cshtml");
+        }
+
+        public IActionResult RoofSpace(string id)
+        {
+            LoadPropertyInfoForSideBar(id);
+            return View("~/Views/ModularForms/BuildingElementsSub/RoofSpace.cshtml");
+        }
+
+        #endregion BuildingElements Sub Views
+
+
+
+
+        #region InteriorElements Sub Views
 
         public IActionResult InteriorElements()
         {
@@ -52,27 +76,40 @@ namespace PropertyInspection_WebApp.Controllers
             return View("~/Views/ModularForms/InteriorElementsSub/InteriorElements.cshtml");
         }
 
+        #endregion InteriorElements Sub Views
+
+        #region ExteriorElements Sub Views
         public IActionResult ExteriorElements()
         {
 
             return View("~/Views/ModularForms/ExteriorElementsSub/ExteriorElements.cshtml");
         }
+        #endregion ExteriorElements Sub Views
 
+        #region GeneralElements Sub Views
         public IActionResult GeneralElements()
         {
 
             return View("~/Views/ModularForms/GeneralElementsSub/GeneralElements.cshtml");
         }
+        #endregion GeneralElements Sub View
 
+        #region ExteriorSiteElements Sub Views
         public IActionResult ExteriorSiteElements()
         {
             return View("~/Views/ModularForms/ExteriorSiteElementsSub/ExteriorSiteElements.cshtml");
         }
+        #endregion ExteriorSiteElements Sub Views
 
 
 
         #region Helpers
 
+        /// <summary>
+        /// Fetches the property info for the id that has been passed
+        /// and updated the view TempData for the calling view
+        /// </summary>
+        /// <param name="id"></param>
         public void LoadPropertyInfoForSideBar(string id)
         {
 
@@ -87,6 +124,11 @@ namespace PropertyInspection_WebApp.Controllers
 
         }
 
+        /// <summary>
+        /// Check if the passed property has been added to the DB and updates the viewbag
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string CheckDbForInsert(string id)
         {
             var propertyDetails = _propertyInfoRepo.Get(id);
