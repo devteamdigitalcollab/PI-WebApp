@@ -10,6 +10,19 @@ for details on configuring this project to bundle and minify static web assets. 
     align-self: center !important;
 }
 
+.chklst {
+    font-size: smaller;
+    text-align: left;
+    font-weight: 200;
+    padding: 2em;
+}
+
+.chklstItems {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .vstack {
     display: flex;
     flex: 1 1 auto;
