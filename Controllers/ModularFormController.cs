@@ -22,7 +22,6 @@ namespace PropertyInspection_WebApp.Controllers
         public ModularFormController(IPropertyInfoRepository propertyInfoRepo)
         {
             _propertyInfoRepo = propertyInfoRepo;
-
         }
 
 
@@ -95,6 +94,7 @@ namespace PropertyInspection_WebApp.Controllers
         #endregion GeneralElements Sub View
 
         #region ExteriorSiteElements Sub Views
+        
         public IActionResult ExteriorSiteElements()
         {
             return View("~/Views/ModularForms/ExteriorSiteElementsSub/ExteriorSiteElements.cshtml");
@@ -142,10 +142,7 @@ namespace PropertyInspection_WebApp.Controllers
                 return ViewBag.Message = "Property Information was not saved successfully";
             }
         }
-
         #endregion Helpers
-
     }
-
 }
 

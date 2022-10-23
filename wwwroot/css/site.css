@@ -151,7 +151,6 @@ input {
     display: inline-block;
     opacity: 0.5;
 }
-
     /* Mark the active step: */
     .stepTxt.active {
         opacity: 1;

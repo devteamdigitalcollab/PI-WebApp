@@ -10,6 +10,7 @@ namespace PropertyInspection_WebApp.Controllers
         public IActionResult Index()
         {
             if (User.IsInRole("SYSTEM") || User.IsInRole("ADMIN"))
+
             {
                 return RedirectToAction("AdminDashboard");
             }
