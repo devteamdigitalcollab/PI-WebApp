@@ -51,6 +51,7 @@ namespace PropertyInspection_WebApp
                 options.AccessDeniedPath = new PathString("/Secured/AccessDeniedIndex");
             });
             services.Configure<PIConfigurations>(Configuration.GetSection("PIConfigurations"));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

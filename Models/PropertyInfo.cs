@@ -65,7 +65,6 @@ namespace PropertyInspection_WebApp.Models
         [BsonElement("PropertyImage")]
         public string PropertyImage { get; set; }
 
-
         [BsonElement("ImageGridFSID")]
         public string ImageGridFSID { get; set; }
 

@@ -87,6 +87,3 @@ function fixStepIndicator(n) {
 }
 
 //-----------------Modular Form JavaScript - End -----------------------
-
-
-
