@@ -8,15 +8,15 @@
 }
 <div class="container-fluid">
     <div class="row">
-        <div class="col-3">
+        <div class="col-2">
             <div class="card">
                 <div class="imgDiv"><img src="~/Assets/Regal.png" alt="Card image cap"></div>
                 <div class="card-body">
                     <h5 class="card-title">@User.Identity.Name</h5>
                     <p class="card-text">
                         Name: @User.Identity.Name <br />
-                        Email: @user.Email
-                        Type: Inspector
+                        Email: @user.Email <br />
+                        Type: @user.Roles <br />
                     </p>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                     <li class="list-group-item">And a fifth one</li>*@
             </ul>
         </div>
-        <div class="col-9">
+        <div class="col-6">
             <div class="row">
                 <h1 class="rpi-red-title" style="width:75%">My Dashboard</h1> <button class="rpi-button-green" style="width: 20%;">+ Add New</button>
                 <hr style="margin-top: 10px;" />
@@ -41,7 +41,7 @@
                     <div class="card-body">
                         <h5 class="card-title rpi-card-title">Create Inspection</h5>
                         <a asp-area="" asp-controller="Operations" asp-action="CreateRole" class="card-link"><div class="imgDiv"><img class="card-img-top btnImage" src="~/Assets/Homework.png" alt="Card image cap"></div></a>
-                         <!-- Button trigger modal -->
+                        <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inspectionTypeModal">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-plus" viewBox="0 0 16 16">
                                 <path d="M8 6.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V11a.5.5 0 0 1-1 0V9.5H6a.5.5 0 0 1 0-1h1.5V7a.5.5 0 0 1 .5-.5z" />
@@ -62,6 +62,41 @@
                             View
                             <span class="badge text-bg-danger">4</span>
                         </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="" style="font-size:smaller; font-weight:200;">
+                <h1 class="rpi-red-title" style="font-family:'Poppins'">Upcoming Inspections</h1>
+                <div class="rpi-card">
+                    <div class="">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item list-group-item-action" aria-current="true">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">2/14 Coronet Place</h5>
+                                    <small>in 3 days</small>
+                                </div>
+                                <p class="mb-1">Client: Jon Doe</p>
+                                <small>Pre-Purchase Inspection</small>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">93 Hepburn Rd</h5>
+                                    <small>in 13 days</small>
+                                </div>
+                                <p class="mb-1">Client: Jane James</p>
+                                <small>Pre-Purchase Inspection</small>
+                            </a>
+                            <a href="#" class="list-group-item list-group-item-action">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">25/182 FlatBush School Rd</h5>
+                                    <small>in 13 days</small>
+                                </div>
+                                <p class="mb-1">Client: Jane James</p>
+                                <small>Pre-Purchase Inspection</small>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="rpi-card" style="width: 28rem;">
@@ -103,22 +138,17 @@
                         <small>Pre-Purchase Inspection</small>
                     </a>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="inspectionTypeModal" tabindex="-1" role="dialog" aria-labelledby="inspectionTypeModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered inspectionTypeModal" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header vstack">
                 <h5 class="rpi-red-title" id="inspectionTypeModalLongTitle">Select Inspection Type</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <small>Please select an inspection type</small>
             </div>
-            <div class="modal-body inspectionTypeModalBody">
+            <div class="modal-body inspectionTypeModalBody hstack">
                 <div class="rpi-card-red" style="width: 22rem;">
                     <div class="card-body">
                         <h5 class="rpi-card-title">Pre-Purchase Inspection</h5>
@@ -156,7 +186,7 @@
                     </div>
                 </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer vstack">
                 <button type="button" class="rpi-btn rpi-button-red" data-dismiss="modal">Close</button>
             </div>
         </div>

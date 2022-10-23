@@ -4,17 +4,20 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace PropertyInspection_WebApp.Controllers
 {
-    [Authorize(Roles = "Admin, Inspector")]
+    [Authorize(Roles = "SYSTEM, ADMIN, INSPECTOR")]
     public class SecuredController : Controller
     {
         public IActionResult Index()
         {
-            if (User.IsInRole("Admin"))
+            if (User.IsInRole("SYSTEM") || User.IsInRole("ADMIN"))
+
             {
                 return RedirectToAction("AdminDashboard");
             }
             else
+            {
                 return RedirectToAction("InspectorDashboard");
+            }
         }
 
         [HttpGet]

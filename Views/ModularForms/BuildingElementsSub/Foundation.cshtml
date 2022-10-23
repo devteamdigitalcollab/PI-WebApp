@@ -5,26 +5,31 @@
 }
 @{
     var user = await UserManager.GetUserAsync(User);
+    var pk_propertyid = TempData["pk_property_id"];
+    var pk_address = TempData["pk_property_address"];
+    var pk_clientName = TempData["pk_property_ClientName"];
+    var pk_inspectionType = TempData["pk_property_inspectionType"];
 }
 <div class="container-fluid">
     <div class="row">
-        <div class="col-3">
+        <div class="col-2">
             <div class="card">
                 <div class="imgDiv"><img class="card-img-top btnImage" src="~/Assets/smart-home.png" alt="Card image cap"></div>
                 <div class="card-body">
                     <h5 class="card-title">@User.Identity.Name</h5>
-                    <p class="card-text">
-                        Property Address: <br />
-                        Client Name:
-                        Inspection Type:
+                    <p class="card-text" style="color:black !important">
+                        Property: @pk_address <br />
+                        Client Name: @pk_clientName <br />
+                        Inspection Type: @pk_inspectionType <br />
+                        PropertyID: @pk_propertyid
                     </p>
                 </div>
             </div>
             <ul class="list-group">
-                <li class="list-group-item"><a title="Returning to dahsboard will result in loss of data" asp-area="" asp-controller="ModularForm" asp-action="Index" class="card-link"><i class="fa-thin fa-house-person-return"></i>Checklist Dashboard</a></li>
+                <li class="list-group-item"><a title="Returning to dahsboard will result in loss of data" asp-area="" asp-controller="ModularForm" asp-action="RedirectedIndexCall" asp-route-id="@pk_propertyid" class="card-link"><i class="fa-thin fa-house-person-return"></i>Checklist Dashboard</a></li>
             </ul>
         </div>
-        <div class="col-6">
+        <div class="col-6 card">
             <div class="text-center">
                 <h1 class="display-6" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Building Elements</h1>
                 <h3 class="display-7" style="font-family:'Poppins'">Foundation</h3>
@@ -441,75 +446,74 @@
             <!-- Circles which indicates the steps of the form: -->
 
         </div>
-        <div class="col-3 hstack">
-            <div class="vr vrline"></div>
-            <div class="vstack" style="margin-top:40px; font-size:smaller; font-weight:200;">
-                <div class="">
+        <div class="col-4">
+            <div class="card chklst">
+                <div class="card-title">
                     <h1 class="display-6" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Checklist</h1>
                 </div>
-                <div class="hstack">
+                <div class="chklstItems">
                     <span class="step"></span>
                     &nbsp; Access Point &nbsp;
                 </div>
-                <div class="hstack">
+                <div class="chklstItems">
                     <span class="step"></span>
                     &nbsp; Foundation &nbsp;
                 </div>
-                <div class="hstack">
+                <div class="chklstItems">
                     <span class="step"></span>
                     &nbsp; Ground &nbsp;
                 </div>
-                <div class="hstack">
+                <div class="chklstItems">
                     <span class="step"></span>
                     &nbsp; Drainage &nbsp;
                 </div>
-                <div class="hstack">
+                <div class="chklstItems">
                     <span class="step"></span>
                     &nbsp; Ventilation &nbsp;
                 </div>
-                <div class="hstack">
+                <div class="chklstItems">
                     <span class="step"></span>
                     &nbsp; Pile Type &nbsp;
                 </div>
-                <div class="hstack">
+                <div class="chklstItems">
                     <span class="step"></span>
                     &nbsp; Structural Alteration &nbsp;
                 </div>
-                <div class="hstack">
+                <div class="chklstItems">
                     <span class="step"></span>
                     &nbsp; Ground Clearance &nbsp;
                 </div>
-                <div class="hstack">
+                <div class="chklstItems">
                     <span class="step"></span>
                     &nbsp; Floor Type&nbsp;
                 </div>
-                <div class="hstack">
+                <div class="chklstItems">
                     <span class="step"></span>
                     &nbsp; Framing and bracing&nbsp;
                 </div>
-                <div class="hstack">
+                <div class="chklstItems">
                     <span class="step"></span>
                     &nbsp; Insulation &nbsp;
                 </div>
-                <div class="hstack">
+                <div class="chklstItems">
                     <span class="step"></span>
                     &nbsp; Electrical &nbsp;
                 </div>
-                <div class="hstack">
+                <div class="chklstItems">
                     <span class="step"></span>
                     &nbsp; Plumbing &nbsp;
                 </div>
-                <div class="hstack">
+                <div class="chklstItems">
                     <span class="step"></span>
                     &nbsp; Insects, Pests & Debris &nbsp;
                 </div>
-                <div class="hstack">
+                <div class="chklstItems">
                     <span class="step"></span>
                     &nbsp; Floor Levels &nbsp;
                 </div>
-                <div class="hstack">
+                <div class="chklstItems">
                     <span class="step"></span>
-                    &nbsp; Notes and recommendations &nbsp;
+                    &nbsp; Notes/Recommendations &nbsp;
                 </div>
             </div>
         </div>

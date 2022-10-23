@@ -4,17 +4,6 @@
 // Write your JavaScript code.
 
 
-// Js for alerting window - for backpage data loss control
-function backpageAlert() {
-    if (confirm("Returning to the dashboard, may result in loss of data. Do you still want to proceed?")) {
-        //do nothing and allow page to redirect to Index
-    } else {
-        var $link = ('#backlink');
-        $link.attr('asp-controller', value = null);
-        $link.attr('asp-action', value = null);
-    }
-}
-
 
 //-----------------Modular Form JavaScript - Begin -----------------------
 var currentTab = 0; // Current tab is set to be the first tab (0)
@@ -98,12 +87,3 @@ function fixStepIndicator(n) {
 }
 
 //-----------------Modular Form JavaScript - End -----------------------
-
-
-
-$(document).ready(function () {
-    $("#add").on("click", function () {
-        alert('Property has been added.');
-    });
-
-});

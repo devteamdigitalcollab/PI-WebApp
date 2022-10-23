@@ -8,7 +8,6 @@ using PropertyInspection_WebApp.Helpers.TrasnactionHelper;
 using PropertyInspection_WebApp.Helpers.WaitHelper;
 using System;
 using Microsoft.AspNetCore.Http;
-using MongoDB.Entities;
 using System.Drawing;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Hosting;
@@ -34,20 +33,24 @@ namespace PropertyInspection_WebApp.Controllers
         [HttpPost]
         public IActionResult SavePropertyInfo(PropertyInfo propertyInfo)
         {
+            try
+            {
+                propertyInfo.InspectionType = Convert.ToString(TempData["pk_inspectionType"]);
 
-            var result = _propertyInfoRepo.Save(propertyInfo);
-            TempData["pk_propertyid"] = propertyInfo.PropertyId;
+                //Insert Property in DB
+                var result = _propertyInfoRepo.Save(propertyInfo);
 
-            if (result = TransactionResultHelper.True)
-                ViewBag.Message = "Property Information added successfully";
-            else
-                ViewBag.Message = "Property Information was not saved successfully";
+                ModelState.Clear();
 
-            ModelState.Clear();
+                WaitForViewBagReloadHelper.ExecuteWait();
 
-            WaitForViewBagReloadHelper.ExecuteWait();
+                return RedirectToAction("Index", "ModularForm", new { id = propertyInfo.PropertyId });
 
-            return View("~/Views/ModularForms/ModularLandingPage.cshtml");
+            }
+            catch (Exception)
+            {
+                return View("~/Views/ExceptionHandling/redirectToErrorPage.cshtml");
+            }
         }
 
         public JsonResult DeletePropertyInfo(string propertyId)
@@ -55,9 +58,10 @@ namespace PropertyInspection_WebApp.Controllers
             var message = _propertyInfoRepo.Delete(propertyId);
             return Json(message);
         }
-        
+
         public IActionResult Index()
         {
+
             // return View("~/Views/ModularForms/ModularLandingPage.cshtml");
             return View("~/Views/Inspection/PropertyInfo.cshtml");
         }

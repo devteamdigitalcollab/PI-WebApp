@@ -14,34 +14,44 @@ using Microsoft.AspNetCore.Http;
 using PropertyInspection_WebApp.IRepository;
 using PropertyInspection_WebApp.Repository;
 using Microsoft.Extensions.Options;
+using PropertyInspection_WebApp.Helpers.ProcessingHelper;
+using MongoDB.Driver.GridFS;
+using MongoDB.Driver;
 
 namespace PropertyInspection_WebApp
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public IConfigurationRoot Configuration { get; set; }
+        public Startup(IWebHostEnvironment env)
         {
-            Configuration = configuration;
-        }
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
-        public IConfiguration Configuration { get; }
+            Configuration = builder.Build();
+
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var mongoDbSettings = Configuration.GetSection(nameof(MongoDBConfig)).Get<MongoDBConfig>();
+            var mongoDbSettings = Configuration.GetSection(nameof(PIConfigurations)).Get<PIConfigurations>();
             services.AddIdentity<ApplicationUser, ApplicationRole>()
                        .AddMongoDbStores<ApplicationUser, ApplicationRole, Guid>
                        (
-                           mongoDbSettings.ConnectionString, mongoDbSettings.Name
+                           mongoDbSettings.CONNECTIONSTRING, mongoDbSettings.NAME
                        );
-            services.AddSingleton(sp => sp.GetRequiredService<IOptions<MongoDBConfig>>().Value);
+            services.AddSingleton(sp => sp.GetRequiredService<IOptions<PIConfigurations>>().Value);
             services.AddScoped<IPropertyInfoRepository, PropertyInfoRepository>();
+
             services.AddControllersWithViews();
             services.ConfigureApplicationCookie(options =>
             {
                 options.AccessDeniedPath = new PathString("/Secured/AccessDeniedIndex");
             });
+            services.Configure<PIConfigurations>(Configuration.GetSection("PIConfigurations"));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,7 +63,7 @@ namespace PropertyInspection_WebApp
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/ExceptionHandling/redirectToErrorPage");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
@@ -70,6 +80,7 @@ namespace PropertyInspection_WebApp
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
         }
     }
 }

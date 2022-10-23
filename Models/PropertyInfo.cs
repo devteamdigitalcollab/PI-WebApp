@@ -1,3 +1,4 @@
+﻿
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Drawing;
@@ -16,6 +17,9 @@ namespace PropertyInspection_WebApp.Models
 {
     public class PropertyInfo
     {
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string _id { get; set; }
+
         /// <summary>
         /// Primary Key 
         /// </summary>
@@ -50,14 +54,19 @@ namespace PropertyInspection_WebApp.Models
         [BsonElement("CertOfTitle")]
         public string CertOfTitle { get; set; }
 
-        [Required]
-        [BsonElement("PropertyImg")]
-        public IFormFile PropertyImg { get; set; }
+        [BsonIgnore]
+        public IFormFile RawImageFile { get; set; }
 
         [Required]
-        [BindProperty]
-        public Image FileUploaded { get; set; }
+        [BsonElement("InspectionType")]
+        public string InspectionType { get; set; }
 
+        [Required]
+        [BsonElement("PropertyImage")]
+        public string PropertyImage { get; set; }
+
+        [BsonElement("ImageGridFSID")]
+        public string ImageGridFSID { get; set; }
 
         [BsonElement("WhenAdded")]
         [BindProperty, DisplayFormat(DataFormatString = "{0:dd-MM-yyyyTHH:mm}", ApplyFormatInEditMode = true)]

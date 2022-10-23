@@ -39,11 +39,15 @@ namespace PropertyInspection_WebApp.Controllers
                 //Adding User to Admin Role
                 if (RoleIDForUser == 1)
                 {
-                    await userManager.AddToRoleAsync(appUser, "Admin");
+                    await userManager.AddToRoleAsync(appUser, "SYSTEM");
                 }
-                else
+                else if (RoleIDForUser == 2)
                 {
-                    await userManager.AddToRoleAsync(appUser, "Inspector");
+                    await userManager.AddToRoleAsync(appUser, "ADMIN");
+                }
+                else if (RoleIDForUser == 3)
+                {
+                    await userManager.AddToRoleAsync(appUser, "INSPECTOR");
                 }
 
                 if (result.Succeeded)
