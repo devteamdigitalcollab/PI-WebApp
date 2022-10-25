@@ -13,10 +13,10 @@
                 <div class="imgDiv"><img src="~/Assets/Regal.png" alt="Card image cap"></div>
                 <div class="card-body">
                     <h5 class="card-title">@User.Identity.Name</h5>
-                    <p class="card-text">
+                    <p class="card-text" style="color:black">
                         Name: @User.Identity.Name <br />
                         Email: @user.Email <br />
-                        Type: @user.Roles <br />
+                        Role: INSPECTOR <br />
                     </p>
                 </div>
             </div>
@@ -99,47 +99,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="rpi-card" style="width: 28rem;">
-                    <div class="card-body">
-                        <h5 class="card-title rpi-red-title">Upcoming Inspections</h5>
-
-                    </div>
-                </div>
             </div>
         </div>
-        <div class="col-3 hstack">
-            <div class="vstack" style="margin-top:40px; font-size:smaller; font-weight:200;">
-                <h1 class="display-6" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"> </h1>
-                <h3 class="display-7" style="font-family:'Poppins'">Upcoming</h3>
-
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">2/14 Coronet Place</h5>
-                            <small>in 3 days</small>
-                        </div>
-                        <p class="mb-1">Client: Jon Doe</p>
-                        <small>Pre-Purchase Inspection</small>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">93 Hepburn Rd</h5>
-                            <small>in 13 days</small>
-                        </div>
-                        <p class="mb-1">Client: Jane James</p>
-                        <small>Pre-Purchase Inspection</small>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">25/182 FlatBush School Rd</h5>
-                            <small>in 13 days</small>
-                        </div>
-                        <p class="mb-1">Client: Jane James</p>
-                        <small>Pre-Purchase Inspection</small>
-                    </a>
-                </div>
-
-
+    </div>
+</div>
 <!-- Modal -->
 <div class="modal fade" id="inspectionTypeModal" tabindex="-1" role="dialog" aria-labelledby="inspectionTypeModal" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered inspectionTypeModal" role="document">
