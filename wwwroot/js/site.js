@@ -87,3 +87,21 @@ function fixStepIndicator(n) {
 }
 
 //-----------------Modular Form JavaScript - End -----------------------
+
+function update() {
+    var SelectElement = document.getElementById("selectedNote");
+
+    sel = document.getElementById("noteList");
+    display = document.getElementById("selectedNote");
+
+    if (sel.value == "null") {
+        document.getElementById("selectedNote").removeAttribute("readonly");
+        display.value = "";
+        display.placeholder = "Enter custom note...";
+    } else if (sel.value == "HS") {
+        display.value = "The sub floor inspection is limited to the immediate area of the access hatch. This is due to current New Zealand legislation Health & Safety at work Act 2015 with regards to working in confined spaces. Due to the limited ability to inspect the sub floor it is marked as not inspected on the certificate of inspection.";
+        document.getElementById('selectedNote').readOnly = true;
+    } else {
+        display.value = "No note selected";
+    }
+}

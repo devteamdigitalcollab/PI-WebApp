@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using PropertyInspection_WebApp.Models.PrePurchaseModels.BuildingElementsModels
 @inject UserManager<ApplicationUser> UserManager
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -35,11 +36,17 @@
                 <h3 class="display-7" style="font-family:'Poppins'">Foundation</h3>
             </div>
 
-
             <form id="regForm" action="">
-
-                <!-- One "tab" for each step in the form: -->
+                <!-- One "tab" for each step in the form: " -->
                 <div class="tab">
+                    <label>Foundation Note</label>
+                    <select id="noteList" onchange="update()" class="form-select form-select-lg" aria-label=".form-select-lg example">
+                        <option disabled>Select Note</option>
+                        <option selected value=HS>H&S Work Act 2015</option>
+                        <option value=null>Custom Note</option>
+                    </select>
+                    <input class="input-group-text mb-3" type="text" id="selectedNote" placeholder="" value="The sub floor inspection is limited to the immediate area of the access hatch. This is due to current New Zealand legislation Health & Safety at work Act 2015 with regards to working in confined spaces. Due to the limited ability to inspect the sub floor it is marked as not inspected on the certificate of inspection." readonly />
+
                     <label>Access Point Location</label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon1">
@@ -49,11 +56,10 @@
                         </span>
                         <input type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
                     </div>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <input type="file" accept="image/*;" capture class="form-control" id="inputGroupFile02" placeholder="Add Image">
                         <label class="input-group-text" for="inputGroupFile02">Upload</label>
                     </div>
-
 
                     <label>Access Point Size</label>
                     <div class="input-group">
@@ -64,40 +70,13 @@
                         </span>
                         <input type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
                     </div>
-                    <div class="input-group">
-                        <input type="file" accept="image/*;" capture class="form-control" id="inputGroupFile02" placeholder="Add Image">
-                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
-                    </div>
-
-                    <label>Access Point Location</label>
-                    <div class="input-group">
-                        <span class="input-group-text" id="basic-addon1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
-                                <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"></path>
-                            </svg>
-                        </span>
-                        <input type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <input type="file" accept="image/*;" capture class="form-control" id="inputGroupFile02" placeholder="Add Image">
                         <label class="input-group-text" for="inputGroupFile02">Upload</label>
                     </div>
                 </div>
 
                 <div class="tab">
-                    <div class="input-group">
-                        <span class="input-group-text" id="basic-addon1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
-                                <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"></path>
-                            </svg>
-                        </span>
-                        <input type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group">
-                        <input type="file" accept="image/*;" capture class="form-control" id="inputGroupFile02" placeholder="Add Image">
-                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
-                    </div>
-
                     <label>Foundation Wall</label>
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon1">
@@ -519,3 +498,4 @@
         </div>
     </div>
 </div>
+
