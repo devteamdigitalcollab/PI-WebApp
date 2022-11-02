@@ -54,19 +54,19 @@ namespace PropertyInspection_WebApp.Models
         [BsonElement("CertOfTitle")]
         public string CertOfTitle { get; set; }
 
-        [BsonIgnore]
-        public IFormFile RawImageFile { get; set; }
-
         [Required]
         [BsonElement("InspectionType")]
         public string InspectionType { get; set; }
 
-        [Required]
-        [BsonElement("PropertyImage")]
-        public string PropertyImage { get; set; }
+        [BsonIgnore]
+        public IFormFile RawImageFile { get; set; }
 
         [BsonElement("ImageGridFSID")]
         public string ImageGridFSID { get; set; }
+
+        [BsonElement("InspectionDateTime")]
+        [BindProperty, DisplayFormat(DataFormatString = "{0:dd-MM-yyyyTHH:mm}", ApplyFormatInEditMode = true)]
+        public DateTime InspectionDateTime { get; set; } = DateTime.Now;
 
         [BsonElement("WhenAdded")]
         [BindProperty, DisplayFormat(DataFormatString = "{0:dd-MM-yyyyTHH:mm}", ApplyFormatInEditMode = true)]

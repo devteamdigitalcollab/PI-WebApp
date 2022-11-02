@@ -1,4 +1,5 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿@model FoundationModel
+@using Microsoft.AspNetCore.Identity
 @using PropertyInspection_WebApp.Models.PrePurchaseModels.BuildingElementsModels
 @inject UserManager<ApplicationUser> UserManager
 @{
@@ -19,9 +20,9 @@
                 <div class="card-body">
                     <h5 class="card-title">@User.Identity.Name</h5>
                     <p class="card-text" style="color:black !important">
-                        Property: @pk_address <br />
-                        Client Name: @pk_clientName <br />
-                        Inspection Type: @pk_inspectionType <br />
+                        Property:<br /> @pk_address <br />
+                        Client Name:<br /> @pk_clientName <br />
+                        Inspection Type:<br /> @pk_inspectionType <br />
                         PropertyID: @pk_propertyid
                     </p>
                 </div>
@@ -36,388 +37,333 @@
                 <h3 class="display-7" style="font-family:'Poppins'">Foundation</h3>
             </div>
 
-            <form id="regForm" action="">
+            <form id="regForm" method="post" asp-controller="Foundation" asp-action="SaveFoundation" enctype="multipart/form-data">
                 <!-- One "tab" for each step in the form: " -->
+
                 <div class="tab">
-                    <label>Foundation Note</label>
-                    <select id="noteList" onchange="update()" class="form-select form-select-lg" aria-label=".form-select-lg example">
-                        <option disabled>Select Note</option>
-                        <option selected value=HS>H&S Work Act 2015</option>
-                        <option value=null>Custom Note</option>
-                    </select>
-                    <input class="input-group-text mb-3" type="text" id="selectedNote" placeholder="" value="The sub floor inspection is limited to the immediate area of the access hatch. This is due to current New Zealand legislation Health & Safety at work Act 2015 with regards to working in confined spaces. Due to the limited ability to inspect the sub floor it is marked as not inspected on the certificate of inspection." readonly />
+                    <label>Foundation Notes</label>
+                    <div class="input-group mb-3">
+                        <select id="noteList" onchange="update()" class="form-control form-select form-select-lg" aria-label=".form-select-lg example" style="max-width:max-content">
+                            <option disabled>Select Note</option>
+                            <option selected value=HS>H&S Work Act 2015</option>
+                            <option value=null>Custom Note</option>
+                        </select>
+                        <input class="form-control" asp-for="FoundationNote" type="text" id="selectedNote" placeholder="" value="The sub floor inspection is limited to the immediate area of the access hatch. This is due to current New Zealand legislation Health & Safety at work Act 2015 with regards to working in confined spaces. Due to the limited ability to inspect the sub floor it is marked as not inspected on the certificate of inspection." readonly />
+                    </div>
+
+                    <div class="form-group">
+                        <input asp-for="AddedBy" id="AddedBy" value="@user.Email" class="form-control" hidden />
+                        <input asp-for="PropertyId" id="PropertyId" class="form-control" hidden />
+                    </div>
 
                     <label>Access Point Location</label>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                 <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"></path>
                             </svg>
                         </span>
-                        <input type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="file" accept="image/*;" capture class="form-control" id="inputGroupFile02" placeholder="Add Image">
-                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                        <input asp-for="AccessPointLocation" type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1" required>
+                        <input asp-for="RawImageAPL" type="file" accept="image/*;" capture class="form-control" id="RawImageAPL" placeholder="Add Image">
                     </div>
 
+
                     <label>Access Point Size</label>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                 <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"></path>
                             </svg>
                         </span>
-                        <input type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="file" accept="image/*;" capture class="form-control" id="inputGroupFile02" placeholder="Add Image">
-                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                        <input asp-for="AccessPointSize" type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
+                        <input asp-for="RawImageAPS" type="file" accept="image/*;" capture class="form-control" id="RawImageAPS" placeholder="Add Image">
                     </div>
                 </div>
+
 
                 <div class="tab">
                     <label>Foundation Wall</label>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                 <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"></path>
                             </svg>
                         </span>
-                        <input type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group">
-                        <input type="file" accept="image/*;" capture class="form-control" id="inputGroupFile02" placeholder="Add Image">
-                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                        <input asp-for="FoundationWall" type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
+                        <input asp-for="RawImageFW" type="file" accept="image/*;" capture class="form-control" id="RawImageFW" placeholder="Add Image">
                     </div>
                 </div>
 
+
+
                 <div class="tab">
                     <label>Ground Condition</label>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                 <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"></path>
                             </svg>
                         </span>
-                        <input type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group">
-                        <input type="file" accept="image/*;" capture class="form-control" id="inputGroupFile02" placeholder="Add Image">
-                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                        <input asp-for="GroundCondition" type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
+                        <input asp-for="RawImageGC" type="file" accept="image/*;" capture class="form-control" id="RawImageGC" placeholder="Add Image">
                     </div>
 
                     <label>Ground Vapour Barrier</label>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                 <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"></path>
                             </svg>
                         </span>
-                        <input type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group">
-                        <input type="file" accept="image/*;" capture class="form-control" id="inputGroupFile02" placeholder="Add Image">
-                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                        <input asp-for="GroundVapourBarrier" type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
+                        <input asp-for="RawImageGVB" type="file" accept="image/*;" capture class="form-control" id="RawImageGVB" placeholder="Add Image">
                     </div>
                 </div>
 
                 <div class="tab">
                     <label>Drainage</label>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                 <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"></path>
                             </svg>
                         </span>
-                        <input type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group">
-                        <input type="file" accept="image/*;" capture class="form-control" id="inputGroupFile02" placeholder="Add Image">
-                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                        <input asp-for="Drainage" type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
+                        <input asp-for="RawImageDR" type="file" accept="image/*;" capture class="form-control" id="RawImageDR" placeholder="Add Image">
                     </div>
                 </div>
+
 
                 <div class="tab">
                     <label>Ventilation</label>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                 <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"></path>
                             </svg>
                         </span>
-                        <input type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group">
-                        <input type="file" accept="image/*;" capture class="form-control" id="inputGroupFile02" placeholder="Add Image">
-                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                        <input asp-for="Ventilation" type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
+                        <input asp-for="RawImageVL" type="file" accept="image/*;" capture class="form-control" id="RawImageVL" placeholder="Add Image">
                     </div>
                 </div>
+
+
                 <div class="tab">
-                    <label>Pile type</label>
-                    <div class="input-group">
+                    <label>Pile Type</label>
+                    <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                 <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"></path>
                             </svg>
                         </span>
-                        <input type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group">
-                        <input type="file" accept="image/*;" capture class="form-control" id="inputGroupFile02" placeholder="Add Image">
-                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                        <input asp-for="PileType" type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
+                        <input asp-for="RawImagePT" type="file" accept="image/*;" capture class="form-control" id="RawImagePT" placeholder="Add Image">
                     </div>
 
                     <label>Pile To Bearer Connections</label>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                 <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"></path>
                             </svg>
                         </span>
-                        <input type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group">
-                        <input type="file" accept="image/*;" capture class="form-control" id="inputGroupFile02" placeholder="Add Image">
-                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                        <input asp-for="PileToBearerConnections" type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
+                        <input asp-for="RawImagePTBC" type="file" accept="image/*;" capture class="form-control" id="RawImagePTBC" placeholder="Add Image">
                     </div>
                 </div>
+
+
                 <div class="tab">
                     <label>Obvious Structural Alteration</label>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                 <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"></path>
                             </svg>
                         </span>
-                        <input type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group">
-                        <input type="file" accept="image/*;" capture class="form-control" id="inputGroupFile02" placeholder="Add Image">
-                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                        <input asp-for="ObviousStructuralAlteration" type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
+                        <input asp-for="RawImageOSA" type="file" accept="image/*;" capture class="form-control" id="RawImageOSA" placeholder="Add Image">
                     </div>
                 </div>
 
                 <div class="tab">
                     <label>Ground Clearance</label>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                 <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"></path>
                             </svg>
                         </span>
-                        <input type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group">
-                        <input type="file" accept="image/*;" capture class="form-control" id="inputGroupFile02" placeholder="Add Image">
-                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                        <input asp-for="GroundClearance" type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
+                        <input asp-for="RawImageGCLR" type="file" accept="image/*;" capture class="form-control" id="RawImageGCLR" placeholder="Add Image">
                     </div>
                 </div>
 
                 <div class="tab">
                     <label>Floor Type</label>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                 <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"></path>
                             </svg>
                         </span>
-                        <input type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group">
-                        <input type="file" accept="image/*;" capture class="form-control" id="inputGroupFile02" placeholder="Add Image">
-                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                        <input asp-for="FloorType" type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
+                        <input asp-for="RawImageFT" type="file" accept="image/*;" capture class="form-control" id="RawImageFT" placeholder="Add Image">
                     </div>
                 </div>
 
 
                 <div class="tab">
                     <label>Timber Framing & Bracing</label>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                 <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"></path>
                             </svg>
                         </span>
-                        <input type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group">
-                        <input type="file" accept="image/*;" capture class="form-control" id="inputGroupFile02" placeholder="Add Image">
-                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                        <input asp-for="TimberFramingBracing" type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
+                        <input asp-for="RawImageTFB" type="file" accept="image/*;" capture class="form-control" id="RawImageTFB" placeholder="Add Image">
                     </div>
                 </div>
 
                 <div class="tab">
                     <label>Insulation Type</label>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                 <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"></path>
                             </svg>
                         </span>
-                        <input type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group">
-                        <input type="file" accept="image/*;" capture class="form-control" id="inputGroupFile02" placeholder="Add Image">
-                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                        <input asp-for="InsulationType" type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
+                        <input asp-for="RawImageIT" type="file" accept="image/*;" capture class="form-control" id="RawImageIT" placeholder="Add Image">
                     </div>
 
                     <label>Insulation Thickness</label>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                 <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"></path>
                             </svg>
                         </span>
-                        <input type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group">
-                        <input type="file" accept="image/*;" capture class="form-control" id="inputGroupFile02" placeholder="Add Image">
-                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                        <input asp-for="InsulationThickness" type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
+                        <input asp-for="RawImageITH" type="file" accept="image/*;" capture class="form-control" id="RawImageITH" placeholder="Add Image">
                     </div>
 
                     <label>Insulation Coverage</label>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                 <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"></path>
                             </svg>
                         </span>
-                        <input type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group">
-                        <input type="file" accept="image/*;" capture class="form-control" id="inputGroupFile02" placeholder="Add Image">
-                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                        <input asp-for="InsulationCoverage" type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
+                        <input asp-for="RawImageIC" type="file" accept="image/*;" capture class="form-control" id="RawImageIC" placeholder="Add Image">
                     </div>
                 </div>
 
                 <div class="tab">
                     <label>Electrical Cable Type</label>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                 <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"></path>
                             </svg>
                         </span>
-                        <input type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group">
-                        <input type="file" accept="image/*;" capture class="form-control" id="inputGroupFile02" placeholder="Add Image">
-                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                        <input asp-for="ElectricalCableType" type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
+                        <input asp-for="RawImageECT" type="file" accept="image/*;" capture class="form-control" id="RawImageECT" placeholder="Add Image">
                     </div>
 
                     <label>Electrical Cable Support</label>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                 <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"></path>
                             </svg>
                         </span>
-                        <input type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group">
-                        <input type="file" accept="image/*;" capture class="form-control" id="inputGroupFile02" placeholder="Add Image">
-                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                        <input asp-for="ElectricalCableSupport" type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
+                        <input asp-for="RawImageECS" type="file" accept="image/*;" capture class="form-control" id="RawImageECS" placeholder="Add Image">
                     </div>
                 </div>
 
                 <div class="tab">
                     <label>Plumbing Type</label>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                 <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"></path>
                             </svg>
                         </span>
-                        <input type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group">
-                        <input type="file" accept="image/*;" capture class="form-control" id="inputGroupFile02" placeholder="Add Image">
-                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                        <input asp-for="PlumbingType" type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
+                        <input asp-for="RawImagePLT" type="file" accept="image/*;" capture class="form-control" id="RawImagePLT" placeholder="Add Image">
                     </div>
 
                     <label>Plumbing Support</label>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                 <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"></path>
                             </svg>
                         </span>
-                        <input type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group">
-                        <input type="file" accept="image/*;" capture class="form-control" id="inputGroupFile02" placeholder="Add Image">
-                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                        <input asp-for="PlumbingSupport" type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
+                        <input asp-for="RawImagePS" type="file" accept="image/*;" capture class="form-control" id="RawImagePS" placeholder="Add Image">
                     </div>
                 </div>
 
                 <div class="tab">
                     <label>Insects & Pests</label>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                 <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"></path>
                             </svg>
                         </span>
-                        <input type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group">
-                        <input type="file" accept="image/*;" capture class="form-control" id="inputGroupFile02" placeholder="Add Image">
-                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                        <input asp-for="InsectsPests" type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
+                        <input asp-for="RawImageIP" type="file" accept="image/*;" capture class="form-control" id="RawImageIP" placeholder="Add Image">
                     </div>
 
                     <label>Debris</label>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                 <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"></path>
                             </svg>
                         </span>
-                        <input type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group">
-                        <input type="file" accept="image/*;" capture class="form-control" id="inputGroupFile02" placeholder="Add Image">
-                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                        <input asp-for="Debris" type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
+                        <input asp-for="RawImageDBR" type="file" accept="image/*;" capture class="form-control" id="RawImageDBR" placeholder="Add Image">
                     </div>
                 </div>
 
                 <div class="tab">
                     <label>Floor Levels</label>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                 <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"></path>
                             </svg>
                         </span>
-                        <input type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group">
-                        <input type="file" accept="image/*;" capture class="form-control" id="inputGroupFile02" placeholder="Add Image">
-                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                        <input asp-for="FloorLevels" type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
+                        <input asp-for="RawImageFL" type="file" accept="image/*;" capture class="form-control" id="RawImageFL" placeholder="Add Image">
                     </div>
                 </div>
 
                 <div class="tab">
                     <label>Notes & Recommendations</label>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
                                 <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"></path>
                             </svg>
                         </span>
-                        <input type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1">
-                    </div>
-                    <div class="input-group">
-                        <input type="file" accept="image/*;" capture class="form-control" id="inputGroupFile02" placeholder="Add Image">
-                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                        <textarea asp-for="NotesRecommendations" type="text" class="form-control" placeholder="Add Note" aria-label="Add Note" aria-describedby="basic-addon1"></textarea>
+                        <input asp-for="RawImageNR" type="file" accept="image/*;" capture class="form-control" id="RawImageNR" placeholder="Add Image">
                     </div>
                 </div>
 
 
                 <div style="overflow:auto;">
                     <div style="float:right;">
-                        <button class="btn btn-secondary" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                        <button class="btn btn-success" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                        <button class="btn btn-secondary mb-3" type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                        <button class="btn btn-success mb-3" type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
                     </div>
                 </div>
             </form>

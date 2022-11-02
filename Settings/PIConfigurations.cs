@@ -18,12 +18,16 @@ namespace PropertyInspection_WebApp.Settings
         //DATABASES
         public string IDENTITYDATABASENAME = "Identity"; //System DB - Do not alter.
         public string PROPERTYDATABASENAME = "PROPERTY_DB";
+        public string BUILDING_ELEMENTS_DATABASENAME = "BUILDING_ELEMENTS_DB";
 
         //TABLES
         public string PROPERTYINFOTABLE = "c_property_info";
+        public string FOUNDATIONTABLE = "c_foundation";
+
 
         //GRIDFS BUCKETNAMES
         public string PROPERTYINFOBUCKETNAME = "GFS_property_info_images";
+        public string FOUNDATIONBUCKETNAME = "GFS_foundation_images";
 
         //GRIDFS GENERIC CHUNCKSIZE = 1MB
         public int CHUNCKSIZE = 1048576;

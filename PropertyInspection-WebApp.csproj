@@ -57,6 +57,7 @@
     <None Remove="Newtonsoft.Json" />
     <None Remove="Helpers\ProcessingHelper\" />
     <None Remove="Views\ExceptionHandling\" />
+    <None Remove="Controllers\BuildingElementsController\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Account\" />
@@ -81,5 +82,6 @@
     <Folder Include="Models\Pre-PurchaseModels\BuildingElementsModels\" />
     <Folder Include="Helpers\ProcessingHelper\" />
     <Folder Include="Views\ExceptionHandling\" />
+    <Folder Include="Controllers\BuildingElementsController\" />
   </ItemGroup>
 </Project>

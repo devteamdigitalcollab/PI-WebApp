@@ -26,10 +26,19 @@ namespace PropertyInspection_WebApp.Controllers
 
 
         #region LandingPage Views
+
         public IActionResult Index(string id)
         {
             LoadPropertyInfoForSideBar(id);
             CheckDbForInsert(id);
+
+            return View("~/Views/ModularForms/ModularLandingPage.cshtml");
+        }
+
+        public IActionResult FoundationIndex(string fId, string pId)
+        {
+            LoadPropertyInfoForSideBar(pId);
+            CheckDbForFoundationInsert(fId);
 
             return View("~/Views/ModularForms/ModularLandingPage.cshtml");
         }
@@ -94,7 +103,7 @@ namespace PropertyInspection_WebApp.Controllers
         #endregion GeneralElements Sub View
 
         #region ExteriorSiteElements Sub Views
-        
+
         public IActionResult ExteriorSiteElements()
         {
             return View("~/Views/ModularForms/ExteriorSiteElementsSub/ExteriorSiteElements.cshtml");
@@ -140,6 +149,25 @@ namespace PropertyInspection_WebApp.Controllers
             else
             {
                 return ViewBag.Message = "Property Information was not saved successfully";
+            }
+        }
+
+        /// <summary>
+        /// Check if the passed foundation has been added to the DB and updates the viewbag
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public string CheckDbForFoundationInsert(string id)
+        {
+            var propertyDetails = _propertyInfoRepo.Get(id);
+
+            if (propertyDetails.PropertyId == id)
+            {
+                return ViewBag.Message = "Foundation checklist added successfully";
+            }
+            else
+            {
+                return ViewBag.Message = "Foundation checklist was not saved successfully";
             }
         }
         #endregion Helpers

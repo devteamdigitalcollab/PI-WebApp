@@ -44,6 +44,8 @@ namespace PropertyInspection_WebApp
                        );
             services.AddSingleton(sp => sp.GetRequiredService<IOptions<PIConfigurations>>().Value);
             services.AddScoped<IPropertyInfoRepository, PropertyInfoRepository>();
+            services.AddScoped<IFoundationRepository, FoundationRepository>();
+
 
             services.AddControllersWithViews();
             services.ConfigureApplicationCookie(options =>
@@ -77,8 +79,13 @@ namespace PropertyInspection_WebApp
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "subRoute",
+                    pattern: "BuildingElements/{controller}/{action}");
+
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
             });
 
         }

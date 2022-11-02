@@ -24,11 +24,13 @@ function showTab(n) {
         var btn = document.getElementById("nextBtn");
         btn.classList.add('btn');
         btn.classList.add('btn-success');
+        btn.classList.add('mb-3');
         document.getElementById("nextBtn").innerHTML = "Submit";
     } else {
         var btn = document.getElementById("nextBtn");
         btn.classList.add('btn');
         btn.classList.add('btn-primary');
+        btn.classList.add('mb-3');
         document.getElementById("nextBtn").innerHTML = "Save & Next";
     }
     // ... and run a function that displays the correct step indicator:
