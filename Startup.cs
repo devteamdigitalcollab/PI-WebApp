@@ -45,6 +45,7 @@ namespace PropertyInspection_WebApp
             services.AddSingleton(sp => sp.GetRequiredService<IOptions<PIConfigurations>>().Value);
             services.AddScoped<IPropertyInfoRepository, PropertyInfoRepository>();
             services.AddScoped<IFoundationRepository, FoundationRepository>();
+            services.AddScoped<FoundationRepository, FoundationRepository>();
 
 
             services.AddControllersWithViews();

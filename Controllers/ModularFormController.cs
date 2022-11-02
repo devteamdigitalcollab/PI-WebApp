@@ -18,10 +18,12 @@ namespace PropertyInspection_WebApp.Controllers
     public class ModularFormController : Controller
     {
         private readonly IPropertyInfoRepository _propertyInfoRepo;
+        private readonly IFoundationRepository _foundationRepository;
 
-        public ModularFormController(IPropertyInfoRepository propertyInfoRepo)
+        public ModularFormController(IPropertyInfoRepository propertyInfoRepo, IFoundationRepository foundationRepository)
         {
             _propertyInfoRepo = propertyInfoRepo;
+            _foundationRepository = foundationRepository;
         }
 
 
@@ -159,9 +161,9 @@ namespace PropertyInspection_WebApp.Controllers
         /// <returns></returns>
         public string CheckDbForFoundationInsert(string id)
         {
-            var propertyDetails = _propertyInfoRepo.Get(id);
+            var foundationChecklist = _foundationRepository.Get(id);
 
-            if (propertyDetails.PropertyId == id)
+            if (foundationChecklist.FoundationId == id)
             {
                 return ViewBag.Message = "Foundation checklist added successfully";
             }

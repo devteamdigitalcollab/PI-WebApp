@@ -7,7 +7,8 @@ namespace PropertyInspection_WebApp.IRepository
     public interface IFoundationRepository
     {
         bool Save(FoundationModel foundation);
-        FoundationModel Get(string PropertyId);
+        FoundationModel Get(string FoundationId);
+        bool GetFoundationByPropertyId (string PropertyId);
         List<FoundationModel> Gets();
         string Delete(string PropertyId);
     }

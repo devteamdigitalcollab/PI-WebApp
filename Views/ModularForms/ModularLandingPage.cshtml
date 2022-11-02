@@ -1,5 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using PropertyInspection_WebApp.Repository
+@using PropertyInspection_WebApp.Settings
 @inject UserManager<ApplicationUser> UserManager
+@inject FoundationRepository foundationRepository
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -9,8 +12,10 @@
     var pk_address = TempData["pk_property_address"];
     var pk_clientName = TempData["pk_property_ClientName"];
     var pk_inspectionType = TempData["pk_property_inspectionType"];
+
+    var checkIfFoundationChecklistIsCompleted = foundationRepository.GetFoundationByPropertyId(pk_propertyid.ToString());
 }
-<div class="container-fluid">
+    <div class="container-fluid">
     <div class="row">
         <div class="col-3">
             <div class="card">
@@ -35,7 +40,14 @@
         </div>
         <div class="col-9">
             <div class="">
-                <h1 class="display-6" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Pre-Purchase Checklist </h1>
+                <h1 class="display-6" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
+                    Pre-Purchase Checklist &nbsp;
+                    @{
+                        if(checkIfFoundationChecklistIsCompleted){
+                            <button type="button" class="btn btn-success">Submit Report</button>
+                        }
+                    }
+                </h1>
                 <h3 class="display-7" style="font-family:'Poppins'">Dashboard</h3>
             </div>
             @if (ViewBag.Message != null)
@@ -95,6 +107,27 @@
                     </div>
                 </div>
             </div>
+            @{
+               
+                if (checkIfFoundationChecklistIsCompleted)
+                {
+                    <div class="vstack">
+                        <h4 class="display-7" style="font-family:'Poppins'">Completed Checklists</h4>
+                        <div>
+                            <h6 class="rpi-card-title" style="color:black">Building Elements</h6>
+                            <div class="hstack">
+                                <div class="card" style="width: 18rem;">
+                                <div class="card-body" style="padding: 10px !important;">
+                                        <h5 class="card-title"><img style="max-width:21px" src="https://img.icons8.com/color/48/000000/ok--v1.png" /> Foundation Checklist</h5>
+                                    <h6 class="card-subtitle mb-1 text-muted"> &nbsp; &nbsp; &nbsp; Checklist complete</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                           
+                    </div>
+                }
+            }
         </div>
     </div>
 </div>

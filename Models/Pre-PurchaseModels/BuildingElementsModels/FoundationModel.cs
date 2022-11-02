@@ -8,6 +8,9 @@ namespace PropertyInspection_WebApp.Models.PrePurchaseModels.BuildingElementsMod
 {
     public class FoundationModel
     {
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string _id { get; set; }
+
         /// <summary>
         /// Primary Key 
         /// </summary>
