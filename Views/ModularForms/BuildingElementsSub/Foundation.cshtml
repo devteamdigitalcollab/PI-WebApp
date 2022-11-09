@@ -41,6 +41,34 @@
                 <!-- One "tab" for each step in the form: " -->
 
                 <div class="tab">
+                    <label>Foundation Type</label>
+                    <div class="input-group mb-3">
+                        <select id="foundationTypeList" onchange="updateFoundationType()" class="form-control form-select form-select-lg" aria-label=".form-select-lg example" style="max-width:max-content">
+                            <option disabled value="none">Select Type</option>
+                            <option selected value=TB2>Type B2</option>
+                            <option value=WDN>Wooden</option>
+                            <option value=STL>Steel</option>
+                            <option value=CON>Concrete</option>
+                        </select>
+                        <input class="form-control" asp-for="FoundationType" type="text" id="selectedFoundationTypeNote" placeholder="" value="Type B2" readonly />
+                    </div>
+
+                    <label>Maintenance Rating Key</label>
+                    <div class="input-group mb-3">
+                        <select id="maintenanceList" onchange="updateMaintenanceKey()" class="form-control form-select form-select-lg" aria-label=".form-select-lg example" style="max-width:max-content">
+                            <option disabled value="none">Select Key</option>
+                            <option selected value=NMR>No maintenance</option>
+                            <option value=SMR>Some maintenance</option>
+                            <option value=UMR>Urgent maintenance</option>
+                            <option value=UVI>Unable to inspect</option>
+                        </select>
+                        <div class="input-color">
+                            <input id="colorBox" class="color-box" style="background-color: #7cb343;" readonly />
+                            <input id="MaintenanceRatingKeyColor" asp-for="MaintenanceRatingKeyColor" value="" hidden />
+                        </div>
+                        <input class="form-control" asp-for="MaintenanceRatingKey" type="text" id="selectedMaintenanceNote" placeholder="" value="No maintenance required" readonly />
+                    </div>
+
                     <label>Foundation Notes</label>
                     <div class="input-group mb-3">
                         <select id="noteList" onchange="update()" class="form-control form-select form-select-lg" aria-label=".form-select-lg example" style="max-width:max-content">

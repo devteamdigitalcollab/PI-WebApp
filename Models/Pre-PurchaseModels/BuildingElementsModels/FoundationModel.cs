@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using DnsClient;
 using Microsoft.AspNetCore.Http;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
@@ -26,6 +27,18 @@ namespace PropertyInspection_WebApp.Models.PrePurchaseModels.BuildingElementsMod
         [Required]
         [BsonElement("AddedBy")]
         public string AddedBy { get; set; }
+
+        [Required]
+        [BsonElement("FoundationType")]
+        public string FoundationType { get; set; }
+
+        [Required]
+        [BsonElement("MaintenanceRatingKey")]
+        public string MaintenanceRatingKey { get; set; }
+
+        [Required]
+        [BsonElement("MaintenanceRatingKeyColor")]
+        public string MaintenanceRatingKeyColor { get; set; }
 
         [Required]
         [BsonElement("FoundationNote")]

@@ -91,8 +91,6 @@ function fixStepIndicator(n) {
 //-----------------Modular Form JavaScript - End -----------------------
 
 function update() {
-    var SelectElement = document.getElementById("selectedNote");
-
     sel = document.getElementById("noteList");
     display = document.getElementById("selectedNote");
 
@@ -107,3 +105,48 @@ function update() {
         display.value = "No note selected";
     }
 }
+
+function updateMaintenanceKey() {
+    sel = document.getElementById("maintenanceList");
+    display = document.getElementById("selectedMaintenanceNote");
+
+    if (sel.value == "NMR") {
+        display.value = "No maintenance required";
+        document.getElementById("colorBox").style.backgroundColor = "#7cb343";
+        document.getElementById("MaintenanceRatingKeyColor").value = "#7cb343";
+    } else if (sel.value == "SMR") {
+        display.value = "Some maintenance required";
+        document.getElementById("colorBox").style.backgroundColor = "#ff9900";
+        document.getElementById("MaintenanceRatingKeyColor").value = "#ff9900";
+    } else if (sel.value == "UMR") {
+        display.value = "Urgent maintenance required";
+        document.getElementById("colorBox").style.backgroundColor = "#f44431";
+        document.getElementById("MaintenanceRatingKeyColor").value = "#f44431";
+    } else if (sel.value == "UVI") {
+        display.value = "Unable to visibly inspect";
+        document.getElementById("colorBox").style.backgroundColor = "#2096f7";
+        document.getElementById("MaintenanceRatingKeyColor").value = "#2096f7";
+    } else {
+        display.value = "No note selected";
+        document.getElementById("colorBox").style.backgroundColor = "#000000";
+        document.getElementById("MaintenanceRatingKeyColor").value = "#000000";
+    }
+}
+
+function updateFoundationType() {
+    sel = document.getElementById("foundationTypeList");
+    display = document.getElementById("selectedFoundationTypeNote");
+
+    if (sel.value == "TB2") {
+        display.value = "Type B2";
+    } else if (sel.value == "WDN") {
+        display.value = "Wooden";
+    } else if (sel.value == "STL") {
+        display.value = "Steel";
+    } else if (sel.value == "CON") {
+        display.value = "Concrete";
+    } else {
+        display.value = "No type selected";
+    }
+}
+
