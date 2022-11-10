@@ -1,24 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using AspNetCore.Identity.MongoDbCore.Infrastructure;
-using Microsoft.AspNetCore.Identity;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using PropertyInspection_WebApp.Helpers.ProcessingHelper;
+using PropertyInspection_WebApp.Helpers.TrasnactionHelper;
 using PropertyInspection_WebApp.IRepository;
 using PropertyInspection_WebApp.Models;
 using PropertyInspection_WebApp.Settings;
-using PropertyInspection_WebApp.Helpers.TrasnactionHelper;
-using PropertyInspection_WebApp.Helpers.ProcessingHelper;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using System.IO;
-using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
-using JsonConvert = Newtonsoft.Json.JsonConvert;
-using MongoDB.Bson.Serialization;
-using MongoDB.Driver.GridFS;
-using System.Net.Sockets;
-using Microsoft.Build.Framework;
 
 
 namespace PropertyInspection_WebApp.Repository

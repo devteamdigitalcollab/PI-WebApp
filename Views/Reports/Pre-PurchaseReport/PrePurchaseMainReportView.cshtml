@@ -1,18 +1,19 @@
 ﻿@model PropertyInfo
 @using PropertyInspection_WebApp.Models.PrePurchaseModels.BuildingElementsModels
-@using PropertyInspection_WebApp.IRepository
+@using PropertyInspection_WebApp.Repository
+@using PropertyInspection_WebApp.Settings
+@inject FoundationRepository foundationRepo
 
 @{
-    Foundation foundationRepository;
     ViewData["Title"] = "PrePurchaseMailReportView";
     var propertyId = TempData["pk_property_id"];
-    var foundation = foundationRepository.GetFoundationByPropertyId(propertyId.ToString());
+    var foundation = foundationRepo.GetFoundationByPropertyId(propertyId.ToString());
 }
 
 <h1 class="display-6" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Pre-Purchase Report</h1>
 <small>Review checklist values before submitting the final report</small>
 <hr />
-@Html.Partial("~/Views/Reports/Shared/_PropertyInfoPartial.cshtml",Model)
+@Html.Partial("~/Views/Reports/Shared/_PropertyInfoPartial.cshtml", Model);
 
 <hr />
 
