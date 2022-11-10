@@ -1,16 +1,18 @@
-﻿using System;
+﻿using PropertyInspection_WebApp.Models.PrePurchaseModels.BuildingElementsModels;
 using System.Collections.Generic;
-using PropertyInspection_WebApp.Models.PrePurchaseModels.BuildingElementsModels;
 
 namespace PropertyInspection_WebApp.IRepository
 {
-    public interface IFoundationRepository
+    public interface IFoundationRepository 
     {
         bool Save(FoundationModel foundation);
+
         FoundationModel Get(string FoundationId);
-        bool GetFoundationByPropertyId (string PropertyId);
+
         List<FoundationModel> Gets();
+
         string Delete(string PropertyId);
+
+        bool GetFoundationByPropertyId(string PropertyId);
     }
 }
-

@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualBasic;
-using PropertyInspection_WebApp.Helpers.ProcessingHelper;
+﻿using Microsoft.AspNetCore.Mvc;
 using PropertyInspection_WebApp.IRepository;
-using PropertyInspection_WebApp.Models;
-using PropertyInfo = PropertyInspection_WebApp.Models.PropertyInfo;
+
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -52,7 +43,6 @@ namespace PropertyInspection_WebApp.Controllers
         }
         #endregion LandingPage Views
 
-
         #region BuildingElements Sub Views
 
         public IActionResult Foundation(string id)
@@ -74,7 +64,6 @@ namespace PropertyInspection_WebApp.Controllers
         }
 
         #endregion BuildingElements Sub Views
-
 
 
 

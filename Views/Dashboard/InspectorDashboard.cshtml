@@ -13,7 +13,7 @@
                 <div class="imgDiv"><img src="~/Assets/Regal.png" alt="Card image cap"></div>
                 <div class="card-body">
                     <h5 class="card-title">@User.Identity.Name</h5>
-                    <p class="card-text" style="color:black">
+                    <p class="card-text" style="color:black !important">
                         Name: @User.Identity.Name <br />
                         Email: @user.Email <br />
                         Role: INSPECTOR <br />
@@ -22,11 +22,10 @@
             </div>
             <ul class="list-group">
                 <li class="rpi-left-li-active">Inspections</li>
-                <li class="rpi-left-li">Inspectors</li>
                 <li class="rpi-left-li">Upcoming</li>
                 <li class="rpi-left-li">Corrections</li>
                 <li class="rpi-left-li">Approved</li>
-                <li class="rpi-left-li"><img class="card-img-top btnImage" src="~/Assets/Livehelp.png" alt="Card image cap"></>Help</li>
+                <li class="rpi-left-li"><img class="card-img-top btnImage" src="~/Assets/Livehelp.png" alt="Card image cap">Help</></li>
                 @*<li class="list-group-item">A fourth item</li>
                     <li class="list-group-item">And a fifth one</li>*@
             </ul>

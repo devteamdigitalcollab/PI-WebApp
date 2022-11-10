@@ -44,7 +44,7 @@
                     Pre-Purchase Checklist &nbsp;
                     @{
                         if(checkIfFoundationChecklistIsCompleted){
-                            <button type="button" class="btn btn-success">Submit Report</button>
+                            <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("PrePurchaseReport", "Report", new { id = @pk_propertyid })'">Submit Report</button>
                         }
                     }
                 </h1>
