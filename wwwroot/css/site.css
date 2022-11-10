@@ -450,3 +450,20 @@ body {
 .card-text {
     color: white !important;
 }
+
+.input-color {
+    border: 1px solid #aaaaaa;
+}
+
+    .input-color input {
+        padding-left: 20px;
+    }
+
+    .input-color .color-box {
+        width: 42px;
+        height: 42px;
+        display: inline-block;
+        position: relative;
+        border: none;
+        margin: 3px;
+    }
