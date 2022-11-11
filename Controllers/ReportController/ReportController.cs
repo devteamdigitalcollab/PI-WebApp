@@ -7,7 +7,7 @@ namespace PropertyInspection_WebApp.Controllers.ReportController
     [Route("Report/{id}")]
     public class ReportController : Controller
     {
-        public IPropertyInfoRepository PropertyInfoRepository { get; set; }
+        private readonly IPropertyInfoRepository PropertyInfoRepository;
 
         public ReportController(IPropertyInfoRepository propertyInfoRepository)
         {

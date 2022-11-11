@@ -1,91 +1,116 @@
 ﻿@model PropertyInspection_WebApp.Models.PropertyInfo
+@inject PIConfigurations config
+@using PropertyInspection_WebApp.Helpers.ProcessingHelper
+@using PropertyInspection_WebApp.Settings
+@using MongoDB.Driver
+
+@{
+    var connectionString = config.CONNECTIONSTRING;
+    var propertyBucketName = config.PROPERTYINFOBUCKETNAME;
+    var dbName = config.PROPERTYDATABASENAME;
+
+    var _mongoClient = new MongoClient(connectionString);
+    var _mongoDatabase = _mongoClient.GetDatabase(dbName);
+}
 
 <div class="container-fluid">
     <h4>PropertyInfo</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2" hidden>
+
+        @*hidden*@
+        <dt class="col-sm-4" hidden>
             @Html.DisplayNameFor(model => model._id)
         </dt>
-        <dd class = "col-sm-10" hidden>
+        <dd class="col-sm-8" hidden>
             @Html.DisplayFor(model => model._id)
         </dd>
-        <dt class="col-sm-2" hidden>
+        <dt class="col-sm-4" hidden>
             @Html.DisplayNameFor(model => model.PropertyId)
         </dt>
-        <dd class="col-sm-10" hidden>
+        <dd class="col-sm-8" hidden>
             @Html.DisplayFor(model => model.PropertyId)
         </dd>
-        <dt class="col-sm-2" style="border:1px">
+
+
+        <dd class="col-sm-12" style="border:1px">
+            @{
+                var image = ImageGridFSHelper.RetrieveImageFromGridFS(Model.ImageGridFSID, propertyBucketName, _mongoDatabase);
+                var base64 = Convert.ToBase64String(image);
+                var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+            }
+            <img src="@imgSrc" />
+        </dd>
+        <dt class="col-sm-4" style="border:1px">
             @Html.DisplayNameFor(model => model.PropertyAddress)
         </dt>
-        <dd class="col-sm-10" style="border:1px">
+        <dd class="col-sm-8" style="border:1px">
             @Html.DisplayFor(model => model.PropertyAddress)
         </dd>
-        <dt class="col-sm-2" style="border:1px">
+        <dt class="col-sm-4" style="border:1px">
             @Html.DisplayNameFor(model => model.ClientFName)
         </dt>
-        <dd class="col-sm-10" style="border:1px">
+        <dd class="col-sm-8" style="border:1px">
             @Html.DisplayFor(model => model.ClientFName)
         </dd>
-        <dt class = "col-sm-2" style="border:1px">
+        <dt class="col-sm-4" style="border:1px">
             @Html.DisplayNameFor(model => model.ClientLName)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.ClientLName)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.PeoplePresent)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.PeoplePresent)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.HouseOccupied)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.HouseOccupied)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.LegalDescription)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.LegalDescription)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.CertOfTitle)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.CertOfTitle)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.InspectionType)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.InspectionType)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.ImageGridFSID)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.ImageGridFSID)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.InspectionDateTime)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.InspectionDateTime)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.WhenAdded)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.WhenAdded)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.AddedBy)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-8">
             @Html.DisplayFor(model => model.AddedBy)
         </dd>
     </dl>

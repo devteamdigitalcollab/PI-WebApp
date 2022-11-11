@@ -53,6 +53,33 @@ namespace PropertyInspection_WebApp.Helpers.ProcessingHelper
                 throw new NullImageException("Image has not been selected");
             }
         }
+        /// <summary>
+        /// Returns a byte arrays of the image requested for.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="bucketName"></param>
+        /// <param name="mongoDatabase"></param>
+        /// <returns>byte[]</returns>
+        public static byte[] RetrieveImageFromGridFS(string id, string bucketName, IMongoDatabase mongoDatabase)
+        {
+            var _bucketName = bucketName;
+            var _chunckSize = new PIConfigurations().CHUNCKSIZE;
+            var objectId = new ObjectId(id);
+
+            if (id != null && bucketName != null)
+            {
+                var _gridFSBucket = new GridFSBucket(mongoDatabase, new GridFSBucketOptions
+                {
+                    BucketName = _bucketName,
+                    ChunkSizeBytes = _chunckSize,
+                    WriteConcern = WriteConcern.WMajority,
+                    ReadPreference = ReadPreference.Secondary
+                });
+
+                return _gridFSBucket.DownloadAsBytes(objectId);
+            }
+            return null;
+        }
     }
 
     #region Custom Exceptions
