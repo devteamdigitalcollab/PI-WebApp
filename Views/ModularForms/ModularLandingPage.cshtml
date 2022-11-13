@@ -13,9 +13,9 @@
     var pk_clientName = TempData["pk_property_ClientName"];
     var pk_inspectionType = TempData["pk_property_inspectionType"];
 
-    var checkIfFoundationChecklistIsCompleted = foundationRepository.GetFoundationByPropertyId(pk_propertyid.ToString());
+    var checkIfFoundationChecklistIsCompleted = foundationRepository.isFoundationPresentByPropertyId(pk_propertyid.ToString());
 }
-    <div class="container-fluid">
+<div class="container-fluid">
     <div class="row">
         <div class="col-3">
             <div class="card">
@@ -43,7 +43,8 @@
                 <h1 class="display-6" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
                     Pre-Purchase Checklist &nbsp;
                     @{
-                        if(checkIfFoundationChecklistIsCompleted){
+                        if (checkIfFoundationChecklistIsCompleted)
+                        {
                             <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("PrePurchaseReport", "Report", new { id = @pk_propertyid })'">Submit Report</button>
                         }
                     }
@@ -108,7 +109,7 @@
                 </div>
             </div>
             @{
-               
+
                 if (checkIfFoundationChecklistIsCompleted)
                 {
                     <div class="vstack">
@@ -117,14 +118,14 @@
                             <h6 class="rpi-card-title" style="color:black">Building Elements</h6>
                             <div class="hstack">
                                 <div class="card" style="width: 18rem;">
-                                <div class="card-body" style="padding: 10px !important;">
+                                    <div class="card-body" style="padding: 10px !important;">
                                         <h5 class="card-title"><img style="max-width:21px" src="https://img.icons8.com/color/48/000000/ok--v1.png" /> Foundation Checklist</h5>
-                                    <h6 class="card-subtitle mb-1 text-muted"> &nbsp; &nbsp; &nbsp; Checklist complete</h6>
+                                        <h6 class="card-subtitle mb-1 text-muted"> &nbsp; &nbsp; &nbsp; Checklist complete</h6>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                           
+
                     </div>
                 }
             }

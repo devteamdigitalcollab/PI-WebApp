@@ -1,348 +1,355 @@
 ﻿@model PropertyInspection_WebApp.Models.PrePurchaseModels.BuildingElementsModels.FoundationModel
+@inject PIConfigurations config
+@using PropertyInspection_WebApp.Helpers.ProcessingHelper
+@using PropertyInspection_WebApp.Settings
+@using MongoDB.Driver
+@{
+    var connectionString = config.CONNECTIONSTRING;
+    var propertyBucketName = config.FOUNDATIONBUCKETNAME;
+    var dbName = config.BUILDING_ELEMENTS_DATABASENAME;
 
-<div>
-    <h4>FoundationModel</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model._id)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model._id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FoundationId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FoundationId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PropertyId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PropertyId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AddedBy)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AddedBy)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FoundationType)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FoundationType)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MaintenanceRatingKey)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MaintenanceRatingKey)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MaintenanceRatingKeyColor)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.MaintenanceRatingKeyColor)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FoundationNote)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FoundationNote)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AccessPointLocation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AccessPointLocation)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.APLGridFSID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.APLGridFSID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.AccessPointSize)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.AccessPointSize)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.APSGridFSID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.APSGridFSID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FoundationWall)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FoundationWall)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FWGridFSID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FWGridFSID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.GroundCondition)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.GroundCondition)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.GCGridFSID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.GCGridFSID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.GroundVapourBarrier)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.GroundVapourBarrier)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.GVBGridFSID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.GVBGridFSID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Drainage)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Drainage)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DRGridFSID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DRGridFSID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Ventilation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Ventilation)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.VLGridFSID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.VLGridFSID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PileType)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PileType)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PTGridFSID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PTGridFSID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PileToBearerConnections)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PileToBearerConnections)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PTBCGridFSID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PTBCGridFSID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ObviousStructuralAlteration)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ObviousStructuralAlteration)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.OSAGridFSID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.OSAGridFSID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.GroundClearance)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.GroundClearance)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.GCLRGridFSID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.GCLRGridFSID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FloorType)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FloorType)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FTGridFSID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FTGridFSID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TimberFramingBracing)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TimberFramingBracing)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TFBGridFSID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TFBGridFSID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.InsulationType)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.InsulationType)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ITGridFSID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ITGridFSID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.InsulationThickness)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.InsulationThickness)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ITHGridFSID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ITHGridFSID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.InsulationCoverage)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.InsulationCoverage)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ICGridFSID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ICGridFSID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ElectricalCableType)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ElectricalCableType)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ECTGridFSID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ECTGridFSID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ElectricalCableSupport)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ElectricalCableSupport)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ECSGridFSID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ECSGridFSID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PlumbingType)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PlumbingType)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PLTGridFSID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PLTGridFSID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PlumbingSupport)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PlumbingSupport)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PSGridFSID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PSGridFSID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.InsectsPests)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.InsectsPests)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IPGridFSID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IPGridFSID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Debris)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Debris)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DBRGridFSID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DBRGridFSID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FloorLevels)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FloorLevels)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FLGridFSID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FLGridFSID)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NotesRecommendations)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NotesRecommendations)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.NRGridFSID)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NRGridFSID)
-        </dd>
-    </dl>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
-</div>
+    var _mongoClient = new MongoClient(connectionString);
+    var _mongoDatabase = _mongoClient.GetDatabase(dbName);
+}
+
+<h3>Building Elements</h3>
+<h4>Foundation</h4>
+<hr />
+<dl class="row">
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model._id)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model._id)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.FoundationId)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.FoundationId)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.PropertyId)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.PropertyId)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.AddedBy)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.AddedBy)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.FoundationType)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.FoundationType)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.MaintenanceRatingKey)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.MaintenanceRatingKey)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.MaintenanceRatingKeyColor)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.MaintenanceRatingKeyColor)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.FoundationNote)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.FoundationNote)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.AccessPointLocation)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.AccessPointLocation)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.APLGridFSID)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.APLGridFSID)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.AccessPointSize)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.AccessPointSize)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.APSGridFSID)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.APSGridFSID)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.FoundationWall)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.FoundationWall)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.FWGridFSID)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.FWGridFSID)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.GroundCondition)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.GroundCondition)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.GCGridFSID)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.GCGridFSID)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.GroundVapourBarrier)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.GroundVapourBarrier)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.GVBGridFSID)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.GVBGridFSID)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Drainage)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Drainage)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.DRGridFSID)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.DRGridFSID)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Ventilation)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Ventilation)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.VLGridFSID)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.VLGridFSID)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.PileType)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.PileType)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.PTGridFSID)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.PTGridFSID)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.PileToBearerConnections)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.PileToBearerConnections)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.PTBCGridFSID)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.PTBCGridFSID)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.ObviousStructuralAlteration)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.ObviousStructuralAlteration)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.OSAGridFSID)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.OSAGridFSID)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.GroundClearance)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.GroundClearance)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.GCLRGridFSID)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.GCLRGridFSID)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.FloorType)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.FloorType)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.FTGridFSID)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.FTGridFSID)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.TimberFramingBracing)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.TimberFramingBracing)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.TFBGridFSID)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.TFBGridFSID)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.InsulationType)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.InsulationType)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.ITGridFSID)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.ITGridFSID)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.InsulationThickness)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.InsulationThickness)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.ITHGridFSID)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.ITHGridFSID)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.InsulationCoverage)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.InsulationCoverage)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.ICGridFSID)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.ICGridFSID)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.ElectricalCableType)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.ElectricalCableType)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.ECTGridFSID)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.ECTGridFSID)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.ElectricalCableSupport)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.ElectricalCableSupport)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.ECSGridFSID)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.ECSGridFSID)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.PlumbingType)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.PlumbingType)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.PLTGridFSID)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.PLTGridFSID)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.PlumbingSupport)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.PlumbingSupport)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.PSGridFSID)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.PSGridFSID)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.InsectsPests)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.InsectsPests)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.IPGridFSID)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.IPGridFSID)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.Debris)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Debris)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.DBRGridFSID)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.DBRGridFSID)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.FloorLevels)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.FloorLevels)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.FLGridFSID)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.FLGridFSID)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.NotesRecommendations)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.NotesRecommendations)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.NRGridFSID)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.NRGridFSID)
+    </dd>
+</dl>

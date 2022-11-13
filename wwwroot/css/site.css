@@ -2,6 +2,11 @@
 for details on configuring this project to bundle and minify static web assets. */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300&display=swap');
+@import url('https://fonts.cdnfonts.com/css/trueno');
+
+.reportFont {
+    font-family: 'Trueno', sans-serif;
+}
 
 .hstack {
     display: flex;
@@ -467,3 +472,17 @@ body {
         border: none;
         margin: 3px;
     }
+
+dt {
+    border: 1px solid #000 !important;
+}
+
+dd {
+    padding: 9px;
+    border: 1px solid #000 !important;
+    margin-bottom: 0px !important;
+}
+
+dl {
+    max-width: min-content;
+}

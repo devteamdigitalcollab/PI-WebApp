@@ -7,17 +7,18 @@
 @{
     ViewData["Title"] = "PrePurchaseMailReportView";
     var propertyId = TempData["pk_property_id"];
-    var foundation = foundationRepo.GetFoundationByPropertyId(propertyId.ToString());
+    var foundationModel = foundationRepo.GetFoundationByPropertyId(propertyId.ToString());
 }
 
-<h1 class="display-6" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Pre-Purchase Report</h1>
+<h1 class="display-6" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">Pre-Purchase Report <button type="button" class="btn btn-success" onclick="location.href='@Url.Action("RedirectedIndexCall", "ModularForm", new { id = @propertyId })'">Submit Report</button></h1>
 <small>Review checklist values before submitting the final report</small>
 <hr />
-@Html.Partial("~/Views/Reports/Shared/_PropertyInfoPartial.cshtml", Model)
+<div class="container-fluid" style="width: fit-content">
+    @Html.Partial("~/Views/Reports/Shared/_PropertyInfoPartial.cshtml", Model)
+    <hr />
+    @Html.Partial("~/Views/Reports/Pre-PurchaseReport/_FoundationPartialView.cshtml", foundationModel)
+    <hr />
+</div>
 
-<hr />
 
 
-
-
-<button type="button" class="btn btn-success" onclick="location.href='@Url.Action("RedirectedIndexCall", "ModularForm", new { id = @propertyId })'">Submit Report</button>

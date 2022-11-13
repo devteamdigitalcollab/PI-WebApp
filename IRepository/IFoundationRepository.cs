@@ -13,6 +13,6 @@ namespace PropertyInspection_WebApp.IRepository
 
         string Delete(string PropertyId);
 
-        bool GetFoundationByPropertyId(string PropertyId);
+        bool isFoundationPresentByPropertyId(string PropertyId);
     }
 }

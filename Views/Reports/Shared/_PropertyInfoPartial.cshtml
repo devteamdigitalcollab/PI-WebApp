@@ -13,13 +13,18 @@
     var _mongoDatabase = _mongoClient.GetDatabase(dbName);
 }
 
-<div class="container-fluid">
-    <h4>PropertyInfo</h4>
-    <hr />
-    <dl class="row">
+<small>Central Auckland House <br />Inspections Limited</small>
+<hr />
 
-        @*hidden*@
-        <dt class="col-sm-4" hidden>
+<h1 class="col-sm-12">
+    @Html.DisplayFor(model => model.PropertyAddress)
+</h1>
+<h3 class="col-sm-12">
+    @Html.DisplayFor(model => model.InspectionType)
+</h3>
+<dl class="row">
+
+    @*<dt class="col-sm-4" hidden>
             @Html.DisplayNameFor(model => model._id)
         </dt>
         <dd class="col-sm-8" hidden>
@@ -30,78 +35,70 @@
         </dt>
         <dd class="col-sm-8" hidden>
             @Html.DisplayFor(model => model.PropertyId)
-        </dd>
+        </dd>*@
 
 
-        <dd class="col-sm-12" style="border:1px">
-            @{
-                var image = ImageGridFSHelper.RetrieveImageFromGridFS(Model.ImageGridFSID, propertyBucketName, _mongoDatabase);
-                var base64 = Convert.ToBase64String(image);
-                var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
-            }
-            <img src="@imgSrc" />
-        </dd>
-        <dt class="col-sm-4" style="border:1px">
-            @Html.DisplayNameFor(model => model.PropertyAddress)
-        </dt>
-        <dd class="col-sm-8" style="border:1px">
-            @Html.DisplayFor(model => model.PropertyAddress)
-        </dd>
-        <dt class="col-sm-4" style="border:1px">
-            @Html.DisplayNameFor(model => model.ClientFName)
-        </dt>
-        <dd class="col-sm-8" style="border:1px">
-            @Html.DisplayFor(model => model.ClientFName)
-        </dd>
-        <dt class="col-sm-4" style="border:1px">
-            @Html.DisplayNameFor(model => model.ClientLName)
-        </dt>
-        <dd class="col-sm-8">
-            @Html.DisplayFor(model => model.ClientLName)
-        </dd>
-        <dt class="col-sm-4">
-            @Html.DisplayNameFor(model => model.PeoplePresent)
-        </dt>
-        <dd class="col-sm-8">
-            @Html.DisplayFor(model => model.PeoplePresent)
-        </dd>
-        <dt class="col-sm-4">
-            @Html.DisplayNameFor(model => model.HouseOccupied)
-        </dt>
-        <dd class="col-sm-8">
-            @Html.DisplayFor(model => model.HouseOccupied)
-        </dd>
-        <dt class="col-sm-4">
-            @Html.DisplayNameFor(model => model.LegalDescription)
-        </dt>
-        <dd class="col-sm-8">
-            @Html.DisplayFor(model => model.LegalDescription)
-        </dd>
-        <dt class="col-sm-4">
-            @Html.DisplayNameFor(model => model.CertOfTitle)
-        </dt>
-        <dd class="col-sm-8">
-            @Html.DisplayFor(model => model.CertOfTitle)
-        </dd>
-        <dt class="col-sm-4">
-            @Html.DisplayNameFor(model => model.InspectionType)
-        </dt>
-        <dd class="col-sm-8">
-            @Html.DisplayFor(model => model.InspectionType)
-        </dd>
-        <dt class="col-sm-4">
+    <dd class="col-sm-12" style="border:1px">
+        @{
+            var image = ImageGridFSHelper.RetrieveImageFromGridFS(Model.ImageGridFSID, propertyBucketName, _mongoDatabase);
+            var base64 = Convert.ToBase64String(image);
+            var imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+        }
+        <img src="@imgSrc" />
+    </dd>
+
+    <dt class="col-sm-4" style="border:1px">
+        Client First Name
+    </dt>
+    <dd class="col-sm-8" style="border:1px">
+        @Html.DisplayFor(model => model.ClientFName)
+    </dd>
+    <dt class="col-sm-4" style="border:1px">
+        Client Last Name
+    </dt>
+    <dd class="col-sm-8">
+        @Html.DisplayFor(model => model.ClientLName)
+    </dd>
+    <dt class="col-sm-4">
+        People Present
+    </dt>
+    <dd class="col-sm-8">
+        @Html.DisplayFor(model => model.PeoplePresent)
+    </dd>
+    <dt class="col-sm-4">
+        House Occupied
+    </dt>
+    <dd class="col-sm-8">
+        @Html.DisplayFor(model => model.HouseOccupied)
+    </dd>
+    <dt class="col-sm-4">
+        Legal Description
+    </dt>
+    <dd class="col-sm-8">
+        @Html.DisplayFor(model => model.LegalDescription)
+    </dd>
+    <dt class="col-sm-4">
+        Certificate Of Title
+    </dt>
+    <dd class="col-sm-8">
+        @Html.DisplayFor(model => model.CertOfTitle)
+    </dd>
+
+    @*<dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.ImageGridFSID)
         </dt>
         <dd class="col-sm-8">
             @Html.DisplayFor(model => model.ImageGridFSID)
-        </dd>
-        <dt class="col-sm-4">
-            @Html.DisplayNameFor(model => model.InspectionDateTime)
-        </dt>
-        <dd class="col-sm-8">
-            @Html.DisplayFor(model => model.InspectionDateTime)
-        </dd>
-        <dt class="col-sm-4">
+        </dd>*@
+
+    <dt class="col-sm-4">
+        Inspection Date &nbsp; Time
+    </dt>
+    <dd class="col-sm-8">
+        @Html.DisplayFor(model => model.InspectionDateTime)
+    </dd>
+
+    @*<dt class="col-sm-4">
             @Html.DisplayNameFor(model => model.WhenAdded)
         </dt>
         <dd class="col-sm-8">
@@ -112,10 +109,6 @@
         </dt>
         <dd class="col-sm-8">
             @Html.DisplayFor(model => model.AddedBy)
-        </dd>
-    </dl>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
-</div>
+        </dd>*@
+
+</dl>

@@ -95,7 +95,7 @@ namespace PropertyInspection_WebApp.Repository
         /// <param name="PropertyId"></param>
         /// <returns>boolean</returns>
         /// <exception cref="GetException"></exception>
-        public bool GetFoundationByPropertyId(string PropertyId)
+        public bool isFoundationPresentByPropertyId(string PropertyId)
         {
             try
             {
@@ -107,6 +107,32 @@ namespace PropertyInspection_WebApp.Repository
                 else
                 {
                     return TransactionResultHelper.False;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new GetException(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Checks if the foundation for the associated property is added to the DB
+        /// </summary>
+        /// <param name="PropertyId"></param>
+        /// <returns>Foundation Model</returns>
+        /// <exception cref="GetException"></exception>
+        public FoundationModel GetFoundationByPropertyId(string PropertyId)
+        {
+            try
+            {
+                var foundationModel = _foundationTable.Find(x => x.PropertyId == PropertyId).FirstOrDefault();
+                if (foundationModel != null)
+                {
+                    return foundationModel;
+                }
+                else
+                {
+                    return null;
                 }
             }
             catch (Exception ex)
